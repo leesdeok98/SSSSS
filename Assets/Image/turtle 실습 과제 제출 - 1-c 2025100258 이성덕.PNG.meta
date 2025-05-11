@@ -1,0 +1,339 @@
+fileFormatVersion: 2
+guid: d8361cef273c96444afdec9efd3a034e
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_0"
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 0
+        width: 700
+        height: 800
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -107.74996, y: 286.82928}
+        - {x: -279, y: 197.07318}
+        - {x: -279, y: 130.7317}
+        - {x: -263.99997, y: 107.31708}
+        - {x: -72.59371, y: 21.463415}
+        - {x: -53.062466, y: 13.658537}
+        - {x: -49.156216, y: 13.658537}
+        - {x: -92.12496, y: 9.756098}
+        - {x: -162.43745, y: -83.90244}
+        - {x: -158.5312, y: -107.31708}
+        - {x: -123.37496, y: -134.63416}
+        - {x: -84.31246, y: -158.04878}
+        - {x: -111.65621, y: -138.53659}
+        - {x: -84.31246, y: -161.95122}
+        - {x: -68.68746, y: -181.46342}
+        - {x: -92.12496, y: -161.95122}
+        - {x: -138.99997, y: -126.82927}
+        - {x: -170.24995, y: -138.53659}
+        - {x: -240.56245, y: -189.2683}
+        - {x: -279, y: -310.2439}
+        - {x: -56.968716, y: -400}
+        - {x: 228.18752, y: -400}
+        - {x: 267.25003, y: -341.4634}
+        - {x: 278.96878, y: -243.90245}
+        - {x: 278.96878, y: 286.82928}
+      - - {x: 193.03127, y: -17.560976}
+        - {x: 196.93752, y: -21.463415}
+        - {x: 185.21877, y: -21.463415}
+        - {x: 189.12502, y: -21.463415}
+      - - {x: 189.12502, y: 52.682926}
+        - {x: 181.31252, y: 64.39024}
+        - {x: 196.93752, y: 44.878048}
+        - {x: 204.75002, y: 33.17073}
+        - {x: 208.65627, y: 33.17073}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c271030c1278b24ab7de4a58a9fd6f8
+      internalID: 1693548172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_1"
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 0
+        width: 700
+        height: 800
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59776cefb2599384896a33654040db48
+      internalID: -1342428570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_2"
+      rect:
+        serializedVersion: 2
+        x: 1855
+        y: 0
+        width: 700
+        height: 800
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3be8fe71f4408244f95d21819982fae9
+      internalID: 1137507106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_3"
+      rect:
+        serializedVersion: 2
+        x: 2536
+        y: 0
+        width: 700
+        height: 800
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fcea8d0b3f1df744be648ce529bb88e
+      internalID: 2063731998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_4"
+      rect:
+        serializedVersion: 2
+        x: 3216
+        y: 0
+        width: 700
+        height: 800
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3b730868b4e926459d13e16aa111f94
+      internalID: 10554839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_5"
+      rect:
+        serializedVersion: 2
+        x: 4100
+        y: 0
+        width: 700
+        height: 800
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 966f063672a7fb14e87ef7b1ea15303f
+      internalID: 3150938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_6"
+      rect:
+        serializedVersion: 2
+        x: 4872
+        y: 49
+        width: 900
+        height: 751
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e74ac3dd64ac6b42bfe70682c55d751
+      internalID: -1450332334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_7"
+      rect:
+        serializedVersion: 2
+        x: 5879
+        y: 61
+        width: 900
+        height: 739
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07f1bc99df12a0444b03d4e43074cf3a
+      internalID: -1395204678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_0": 1693548172
+      "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_1": -1342428570
+      "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_2": 1137507106
+      "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_3": 2063731998
+      "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_4": 10554839
+      "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_5": 3150938
+      "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_6": -1450332334
+      "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_7": -1395204678
+      "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_8": -1645084245
+      "turtle \uC2E4\uC2B5 \uACFC\uC81C \uC81C\uCD9C - 1-c 2025100258 \uC774\uC131\uB355_9": 1493142349
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
