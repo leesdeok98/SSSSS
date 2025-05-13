@@ -9,16 +9,15 @@ public class SoundSet : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject Sound;
-    [SerializeField] private GameObject Xkey;
+
     private bool isPaused = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        // °ÔÀÓ ½ÃÀÛ ½Ã ÀÏ½ÃÁ¤ÁöÃ¢ ¼û±â±â
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ï¿½
         pausePanel.SetActive(false);
         Sound.SetActive(false);
-        Xkey.SetActive(false);
     }
 
     // Update is called once per frame
@@ -37,12 +36,12 @@ public class SoundSet : MonoBehaviour
 
         if (isPaused)
         {
-            Time.timeScale = 0f; // °ÔÀÓ ÀÏ½ÃÁ¤Áö
+            Time.timeScale = 0f; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½
             pausePanel.SetActive(true);
         }
         else
         {
-            Time.timeScale = 1f; // °ÔÀÓ Àç°³
+            Time.timeScale = 1f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ç°³
             pausePanel.SetActive(false);
         }
     }
@@ -54,17 +53,15 @@ public class SoundSet : MonoBehaviour
     }
     public void QuitToMain()
     {
-        Debug.Log("QuitToMain ÇÔ¼ö ½ÇÇàµÊ");
+        Debug.Log("QuitToMain ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½");
         Time.timeScale = 1f;
         SceneManager.LoadScene("Main");
     }
     public void OnClickSound()
     {
-        Debug.Log("»ç¿îµå");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½");
         if (isPaused)
         Sound.SetActive(true);
-
-
     }
     public void OnClickXkey()
     {
