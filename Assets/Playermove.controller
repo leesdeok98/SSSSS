@@ -195,7 +195,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Slide
-  m_Speed: 20
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8570045257982652327}
@@ -255,7 +255,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Run
-  m_Speed: 1.2
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7410156724078508959}
@@ -322,7 +322,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c19a6e18851287e45bc24bbace3c0a71, type: 2}
+  m_Motion: {fileID: 7400000, guid: 477cb15805b5df84580debe44d93f08b, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
