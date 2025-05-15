@@ -57,6 +57,12 @@ public class PlayerMove : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (!isHit && !isSliding && !isRunningToEdge)
+        {
+            if (isGround && state != State.Run)
+                ChangeAnim(State.Run);
+        }
+
         anim.SetInteger("State", (int)state);
         anim.SetBool("isSliding", isSliding);
     }
@@ -148,6 +154,7 @@ public class PlayerMove : MonoBehaviour
         ChangeAnim(State.Hit);
         StartInvincible();
         Debug.Log("Crush");
+
 
         if (lives <= 0)
         {

@@ -6,11 +6,11 @@ using UnityEngine;
 [Serializable]
 public class ObstaclePatten
 {
-    public int spawnTime;
+    public float spawnTime;
     public int type;
     public int imageType;
-
-    public ObstaclePatten(int time,int obstacleType,int imageType)
+    
+    public ObstaclePatten(float time,int obstacleType,int imageType)
     {
         spawnTime=time;
         type = obstacleType;
