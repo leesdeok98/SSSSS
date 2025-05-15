@@ -1154,10 +1154,10 @@ MonoBehaviour:
   - spawnTime: 3
     type: 0
     imageType: 0
-  - spawnTime: 1
+  - spawnTime: 0.5
     type: 0
     imageType: 1
-  - spawnTime: 2
+  - spawnTime: 0.6
     type: 1
     imageType: 0
   - spawnTime: 3
