@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Scene1
   m_EditorClassIdentifier: 
   storyImage: {fileID: 21300000, guid: ba402a8d666b480439f68c94e25a02db, type: 3}
-  storyText: Lee sung duk?
+  storyText: "\uC548\uB155\uD558\uC138\uC694"

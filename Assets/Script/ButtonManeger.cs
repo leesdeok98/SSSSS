@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
-    [SerializeField] private string nextSceneName = "Main2";   // 다음에 로드할 씬
+    [SerializeField] private string nextSceneName = "ImageBoard";   // 다음에 로드할 씬
     [SerializeField] private Button startButton;         // 시작 버튼 연결
 
 
@@ -26,6 +26,6 @@ public class ButtonManager : MonoBehaviour
 
     public void LoadNextScene()
     {
-        SceneManager.LoadScene(nextSceneName);
+        SceneManager.LoadScene("ImageBoard");
     }
 }

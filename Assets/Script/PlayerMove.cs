@@ -20,6 +20,7 @@ public class PlayerMove : MonoBehaviour
     private int jumpCount = 0;
     private bool isSliding = false;
     private bool isRunningToEdge = false;  // P키 달리기 상태
+    private bool isJumping = false;
 
     private Rigidbody2D rigid;
     private Animator anim;
@@ -52,16 +53,21 @@ public class PlayerMove : MonoBehaviour
         {
             HandleSlide();
             HandleJump();
+        if (!isJumping && !isSliding)
+        {
+                ChangeAnim(State.Run);
         }
+        }
+        
     }
 
     private void LateUpdate()
     {
-        if (!isHit && !isSliding && !isRunningToEdge)
-        {
-            if (isGround && state != State.Run)
-                ChangeAnim(State.Run);
-        }
+        //if (!isHit && !isSliding && !isRunningToEdge)
+        //{
+        //    if (isGround && state != State.Run)
+        //        ChangeAnim(State.Run);
+        //}
 
         anim.SetInteger("State", (int)state);
         anim.SetBool("isSliding", isSliding);
@@ -69,7 +75,7 @@ public class PlayerMove : MonoBehaviour
 
     void Jump()
     {
-        isGround = false;
+        isJumping = true;
         Debug.Log("Jump");
         rigid.velocity = new Vector2(rigid.velocity.x, 0f);
         rigid.AddForce(Vector2.up * JumpPower, ForceMode2D.Impulse);
@@ -80,14 +86,14 @@ public class PlayerMove : MonoBehaviour
     {
         //스페이스바를 누르면 땅일때 점프를 한다
         if (Input.GetKeyDown(KeyCode.Space))
-        {   //현재 위치가 땅이며 점프카운트가 0일때? 점프상태가 아닐때?
-            if (isGround && jumpCount == 0)
+        {   //현재 위치가 땅이며 점프카운트가 0일때? 점프상태가 아닐때
+            if (isGround && jumpCount == 0 && !isJumping)
             {
                 Jump();
                 jumpCount = 1;
             }
             //점프카운트가 1이상이고 플레이어가 땅에 없을때 한번더 점프
-            else if (!isGround && jumpCount <= jumpLevel)
+            else if (isJumping && jumpCount <= jumpLevel)
             {
                 Jump();
                 jumpCount++;
@@ -111,8 +117,8 @@ public class PlayerMove : MonoBehaviour
             isSliding = false;
             RunnCol.enabled = true;
             SlcCol.enabled = false;
-            if (isGround)
-                ChangeAnim(State.Run);
+            //if (isGround && !isJumping)
+            //    ChangeAnim(State.Run);
         }
     }
 
@@ -123,6 +129,7 @@ public class PlayerMove : MonoBehaviour
             Debug.Log("점프 초기화");
             isGround = true;
             jumpCount = 0;
+            isJumping = false;
         }
     }
 

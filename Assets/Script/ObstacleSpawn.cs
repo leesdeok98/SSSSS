@@ -10,6 +10,7 @@ public class ObstaclePatten
     public int type;
     public int imageType;
     
+    //                  장애물이 나오는 시간 / 1단or2단 /1단or2단 중에서 어떤 이미지인지
     public ObstaclePatten(float time,int obstacleType,int imageType)
     {
         spawnTime=time;
