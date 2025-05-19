@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 72932245}
   - component: {fileID: 72932251}
   - component: {fileID: 72932250}
+  - component: {fileID: 72932252}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -156,12 +157,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434b58747ad341a4a80e60c79d7ddb91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lives: 3
+  isInvincible: 0
+  isHit: 0
+  state: 0
   jumpLevel: 1
   maxSpeed: 3
   JumpPower: 25
   isGround: 1
   SlcCol: {fileID: 1857478078}
   RunnCol: {fileID: 698456694}
+  jumpCount: 0
+  isSliding: 0
+  isRunningToEdge: 0
+  isJumping: 0
+  rigid: {fileID: 0}
+  anim: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!61 &72932246
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -338,6 +350,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 1757253256}
   Sound: {fileID: 281675271}
+--- !u!114 &72932252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72932244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e22c3f48466134398337b82532e3c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JumpForce: 28
+  rb: {fileID: 72932247}
+  PlayerAnimator: {fileID: 72932250}
 --- !u!1 &179003695
 GameObject:
   m_ObjectHideFlags: 0
