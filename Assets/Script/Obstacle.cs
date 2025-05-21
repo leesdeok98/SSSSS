@@ -27,9 +27,11 @@ public class Obstacle : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("플레이어와 충돌!");
-            Destroy(other.gameObject); // 또는 데미지 처리
+            Debug.Log("플레이어와 충돌!");//Destroy(gameObject); // 또는 데미지 처리
+
+            PlayerMoveing.instance.TakeDamage();
         }
+
     }
 
     void OnBecameInvisible()

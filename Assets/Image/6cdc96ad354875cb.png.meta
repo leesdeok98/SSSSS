@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ecb78e534a2aed24292d3ab8898d13de
+guid: dac27c4fb7fedea40b69b57d4296b1e6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 450
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,64 +110,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Silde_0
+      name: 6cdc96ad354875cb_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 888
-        height: 843
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1046
+        y: 698
+        width: 578
+        height: 604
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e46640902da268b4bad880cdf8d8b8cf
-      internalID: 2019657596
+      spriteID: 281d1b971e5ac074ab2b06dff1419abb
+      internalID: -1819695394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Silde_1
+      name: 6cdc96ad354875cb_1
       rect:
         serializedVersion: 2
-        x: 927
-        y: 0
-        width: 961
-        height: 843
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1626
+        y: 1214
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa9280cac1018ca42bb0c397a745e5d5
-      internalID: -948879433
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Silde_2
-      rect:
-        serializedVersion: 2
-        x: 2095
-        y: 0
-        width: 1040
-        height: 843
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f9b2d6daeaa15c248884f158b87ccc51
-      internalID: 522606806
+      spriteID: ac9c89c2745721444b01b16add6a5dbf
+      internalID: 1931548076
       vertices: []
       indices: 
       edges: []
@@ -183,9 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Silde_0: 2019657596
-      Silde_1: -948879433
-      Silde_2: 522606806
+      6cdc96ad354875cb_0: -1819695394
+      6cdc96ad354875cb_1: 1931548076
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class PlayerMoveing : MonoBehaviour
 {
+    public static PlayerMoveing instance;
+
+    private int maxLives = 3;
+    private int currentLives;
     [Header("Settings")]
     public float JumpForce;
 
@@ -16,10 +21,25 @@ public class PlayerMoveing : MonoBehaviour
     private bool isJumping = false;
     public int jumpLevel = 2;
     private bool isHit = false;
+    public BoxCollider2D SlcCol;
+    public BoxCollider2D RunnCol;
+    private SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        SlcCol.enabled = false;
+        SlcCol.enabled = false;
+        rb = GetComponent<Rigidbody2D>();
+        PlayerAnimator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        currentLives = maxLives;
+        UIManager.instance.UpdateLivesUI(currentLives);
         SetGroundTrue();
     }
 
@@ -27,12 +47,12 @@ public class PlayerMoveing : MonoBehaviour
     void Update()
     {
         if (isHit) return; // 피격 중엔 조작 금지
+        
+        Slide();//슬라이드 매서드 부르기
 
-        Slide();
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))//스페이스바를 누르면 실행
         {
-            Invoke("TryJump", 0.1f); // 0.1초 딜레이 후 점프 시도
+            Invoke("TryJump", 0.1f); // 0.1초 딜레이 후 TryJump 메서드 실행
         }
     }
 
@@ -50,22 +70,24 @@ public class PlayerMoveing : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Enemy") && !isHit)
+        if (collider.gameObject.CompareTag("Obstacle") && !isHit)
         {
-            Hit();
+            TakeDamage();
+           
         }
     }
 
-    void Hit()
-    {
-        isHit = true;
-        PlayerAnimator.SetInteger("State", 3); // Hit 애니메이션 재생
-        rb.velocity = Vector2.zero; // 피격 시 멈추기
+    //void Hit()
+    //{
+    //    isHit = true;
+    //    PlayerAnimator.SetInteger("State", 3); // Hit 애니메이션 재생
+    //    rb.velocity = Vector2.zero; // 피격 시 멈추기
 
-        Debug.Log("Crush");
+    //    Debug.Log("Crush");
 
-        Invoke("RecoverFromHit", 0.7f); // 0.7초 후 회복
-    }
+    //    Invoke("RecoverFromHit", 0.5f); // 0.7초 후 회복
+
+    //}
 
     void RecoverFromHit()
     {
@@ -109,10 +131,28 @@ public class PlayerMoveing : MonoBehaviour
         if (Input.GetKey(KeyCode.C) && isGround)
         {
             PlayerAnimator.SetInteger("State", 2);
+            SlcCol.enabled = true;
+            RunnCol.enabled = false;
         }
         else if (isGround)
         {
             PlayerAnimator.SetInteger("State", 0);
+            SlcCol.enabled = false;
+            RunnCol.enabled = true;
         }
     }
+    public void TakeDamage()
+    {
+  
+        currentLives--;
+        UIManager.instance.UpdateLivesUI(currentLives);
+        isHit = true;
+        PlayerAnimator.SetInteger("State", 3); // Hit 애니메이션 재생
+        rb.velocity = Vector2.zero; // 피격 시 멈추기
+
+        Debug.Log("Crush");
+
+        Invoke("RecoverFromHit", 0.5f); // 0.7초 후 회복
+    }
+
 }
