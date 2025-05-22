@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
-public class PlayerMoveing : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    public static PlayerMoveing instance;
+    public static PlayerController instance;
 
     private int maxLives = 3;
     private int currentLives;
@@ -67,7 +67,7 @@ public class PlayerMoveing : MonoBehaviour
             Invoke("TryJump", 0.1f);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             ActivateShield();
         }
