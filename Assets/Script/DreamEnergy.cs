@@ -6,7 +6,7 @@ public class DreamEnergy : MonoBehaviour
 {
     public static DreamEnergy instance;
 
-    public float moveSpeed = 5f;        
+    public float moveSpeed = 10f;        
     private float destroyX = -15f;      
 
     private void Awake()
@@ -14,11 +14,6 @@ public class DreamEnergy : MonoBehaviour
         if (instance == null) instance = this;
     }
 
-    //void Start()            
-    //{
-    //    if (shieldObject != null)
-    //        shieldObject.SetActive(false);
-    //}
 
     void Update()
     {

@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 4309666526567294268}
   - component: {fileID: 2239456648528967472}
   - component: {fileID: -2873488116911486770}
-  - component: {fileID: 5359876768039221326}
-  - component: {fileID: 7542355689115808386}
   m_Layer: 0
   m_Name: Obstacke_Up
   m_TagString: Obstacle
@@ -31,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 7504389528908389390}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.5983, y: -3.24, z: -9}
-  m_LocalScale: {x: 0.19660808, y: 0.21374168, z: 0.7139}
+  m_LocalPosition: {x: -5.4239, y: -3.5244, z: -9}
+  m_LocalScale: {x: 0.21404722, y: 0.23270057, z: 0.777223}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -177,28 +175,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5359876768039221326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7504389528908389390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2193166a2357184e8a7847f4b8c413d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7542355689115808386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7504389528908389390}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e17e5edd946d059479ff0a588e7cc331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 15

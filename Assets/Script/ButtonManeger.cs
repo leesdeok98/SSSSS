@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
-    [SerializeField] private string nextSceneName = "ImageBoard"; // 유연하게 다음 씬 이름 설정
+    //[SerializeField] private string nextSceneName = "ImageBoard"; // 유연하게 다음 씬 이름 설정
     [SerializeField] private Button startButton; // 시작 버튼 연결
 
     private void Start()

@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 
 
-public class EscSetting : MonoBehaviour
+public class SoundSet : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
-    [SerializeField] private GameObject Sound;
+    
     
 
     private bool isPaused = false;
@@ -18,7 +18,7 @@ public class EscSetting : MonoBehaviour
     {
         
         pausePanel.SetActive(false);
-        Sound.SetActive(false);
+        
         
     }
 
@@ -59,17 +59,7 @@ public class EscSetting : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("Main");
     }
-    public void OnClickSound()
-    {
-        
-        if (isPaused)
-        Sound.SetActive(true);
-    }
-    public void OnClickXkey()
-    {
-        Sound.SetActive(false);
-
-    }
+    
     public void OnClickRetry()
     {
         Time.timeScale = 1f;
