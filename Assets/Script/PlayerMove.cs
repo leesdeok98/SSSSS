@@ -86,13 +86,13 @@ public class PlayerMove : MonoBehaviour
     {
         //스페이스바를 누르면 땅일때 점프를 한다
         if (Input.GetKeyDown(KeyCode.Space))
-        {   //현재 위치가 땅이며 점프카운트가 0일때? 점프상태가 아닐때
+        {  
             if (isGround && jumpCount == 0 && !isJumping)
             {
                 Jump();
                 jumpCount = 1;
             }
-            //점프카운트가 1이상이고 플레이어가 땅에 없을때 한번더 점프
+            
             else if (isJumping && jumpCount <= jumpLevel)
             {
                 Jump();

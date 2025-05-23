@@ -27,6 +27,7 @@ public class DreamEnergy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Trigger 감지됨: " + other.name);
         if (other.CompareTag("Player"))
         {
             PlayerController.instance.AddDreamEnergy(); // 코인 X

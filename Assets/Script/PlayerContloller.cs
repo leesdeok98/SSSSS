@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
 
     private int maxLives = 3;
     private int currentLives;
-    private int dreamEnergyCount = 0;
+    public int dreamEnergyCount = 0;
+
 
     private float invincibleTime = 1.5f;
     private float hurtDuration = 0.3f;
@@ -228,10 +229,12 @@ public class PlayerController : MonoBehaviour
         dreamEnergyCount++;
         UIManager.instance.UpdateDreamEnergyUI(dreamEnergyCount);
 
+        // 조건을 명확히: 2개 이상이면 쉴드 발동
         if (dreamEnergyCount >= 2 && !isShieldActive)
         {
-            dreamEnergyCount = 0;
             ActivateShield();
         }
     }
+
+    
 }
