@@ -5,51 +5,63 @@ using UnityEngine.SocialPlatforms;
 
 public class PlayerController : MonoBehaviour
 {
+    // 싱글톤 인스턴스
     public static PlayerController instance;
 
-    private int maxLives = 3;
-    private int currentLives;
-
-    private float invincibleTime = 1.5f;
-    private bool isHurt;
-
+    // ======== Shield 관련 ========
     [Header("Shield")]
     public GameObject shieldObject;
     public float shieldDuration = 2f;
     public bool isShieldActive = false;
 
-    private int coinCount = 0;
-
+    // ======== 이동 관련 컴포넌트 ========
     [Header("Movement")]
     public float JumpForce;
     public Rigidbody2D rb;
     public Animator PlayerAnimator;
-    public BoxCollider2D SlcCol;
-    public BoxCollider2D RunnCol;
+    public BoxCollider2D SlcCol;    // 슬라이딩 콜라이더
+    public BoxCollider2D RunnCol;   // 달리기 콜라이더
 
+    // ======== 플레이어 상태 ========
+    private int maxLives = 3;
+    private int currentLives;
+    private int coinCount = 0;
+
+    private float invincibleTime = 1.5f;
+    private bool isHurt;
+
+    // ======== 점프 관련 상태 ========
     private bool isGround = false;
     private int jumpCount = 0;
     private bool isJumping = false;
     public int jumpLevel = 2;
 
+    // ======== 기타 컴포넌트 ========
     private SpriteRenderer spr;
-    Color halfA = new Color(1, 1, 1, 0.5f);
+    Color halfA = new Color(1, 1, 1, 0.5f);  // 투명도 깜빡임 효과
     Color fullA = new Color(1, 1, 1, 1);
+
+    // ========== Unity 메서드 ==========
 
     private void Awake()
     {
+        // 싱글톤 설정
         if (instance == null) instance = this;
         else Destroy(gameObject);
 
+        // 컴포넌트 참조 캐싱
         rb = GetComponent<Rigidbody2D>();
         PlayerAnimator = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
+
+        // 기본 콜라이더 설정
         SlcCol.enabled = false;
         RunnCol.enabled = true;
     }
 
     private void Start()
     {
+        // 초기 체력 및 코인 UI 설정
         currentLives = maxLives;
         UIManager.instance.UpdateLivesUI(currentLives);
         UIManager.instance.UpdateCoinUI(coinCount);
@@ -64,6 +76,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            // 입력 지연 보정
             Invoke("TryJump", 0.1f);
         }
 
@@ -72,6 +85,8 @@ public class PlayerController : MonoBehaviour
             ActivateShield();
         }
     }
+
+    // ========== 충돌 처리 ==========
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -90,7 +105,7 @@ public class PlayerController : MonoBehaviour
         {
             if (isShieldActive)
             {
-                Destroy(collider.gameObject);
+                Destroy(collider.gameObject); // 쉴드 상태면 적 제거
             }
             else if (!isHurt)
             {
@@ -99,6 +114,8 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    // ========== 데미지 및 죽음 처리 ==========
 
     public void TakeDamage()
     {
@@ -142,7 +159,10 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         Debug.Log("Game Over");
+        // TODO: 게임 오버 처리 추가
     }
+
+    // ========== 점프/슬라이드 ==========
 
     void TryJump()
     {
@@ -187,6 +207,8 @@ public class PlayerController : MonoBehaviour
     {
         isGround = true;
     }
+
+    // ========== 쉴드 및 기타 유틸 ==========
 
     public void ActivateShield()
     {
