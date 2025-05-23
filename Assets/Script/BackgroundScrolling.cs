@@ -8,7 +8,7 @@ public class BackgroundScrolling : MonoBehaviour
     private float resentPosX = -19.3f;
     public float speed;
     public SpriteRenderer[] backgrounds;
-    private int firstIndex = 1;
+    
     void Update()
     {
         for(int i = 0;i<backgrounds.Length;i++)

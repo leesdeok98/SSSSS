@@ -8,6 +8,8 @@ TagManager:
   - Obstacle
   - Lightning
   - Coin
+  - Enemy
+  - DreamEnergy
   layers:
   - Default
   - TransparentFX

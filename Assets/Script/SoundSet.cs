@@ -9,6 +9,7 @@ public class SoundSet : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject Sound;
+    [SerializeField] private GameObject Retry;
 
     private bool isPaused = false;
 
@@ -18,6 +19,7 @@ public class SoundSet : MonoBehaviour
         // ���� ���� �� �Ͻ�����â �����
         pausePanel.SetActive(false);
         Sound.SetActive(false);
+        Retry.SetActive(false);
     }
 
     // Update is called once per frame
@@ -68,5 +70,10 @@ public class SoundSet : MonoBehaviour
         Sound.SetActive(false);
 
     }
-    
+    public void OnClickRetry()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 현재 씬을 다시 로드
+    }
+
 }

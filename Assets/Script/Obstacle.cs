@@ -29,7 +29,7 @@ public class Obstacle : MonoBehaviour
         {
             Debug.Log("플레이어와 충돌!");//Destroy(gameObject); // 또는 데미지 처리
 
-            PlayerMoveing.instance.TakeDamage();
+            PlayerController.instance.TakeDamage();
         }
 
     }

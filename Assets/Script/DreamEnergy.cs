@@ -34,7 +34,7 @@ public class DreamEnergy : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerController.instance.AddCoin();
+            PlayerController.instance.AddDreamEnergy(); // ÄÚÀÎ X
             Destroy(gameObject);
         }
     }

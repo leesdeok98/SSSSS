@@ -1,82 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 public class PlayerController : MonoBehaviour
 {
-    // 싱글톤 인스턴스
     public static PlayerController instance;
 
-    // ======== Shield 관련 ========
     [Header("Shield")]
     public GameObject shieldObject;
     public float shieldDuration = 2f;
     public bool isShieldActive = false;
 
-    // ======== 이동 관련 컴포넌트 ========
     [Header("Movement")]
     public float JumpForce;
     public Rigidbody2D rb;
     public Animator PlayerAnimator;
-    public BoxCollider2D SlcCol;    // 슬라이딩 콜라이더
-    public BoxCollider2D RunnCol;   // 달리기 콜라이더
+    public BoxCollider2D SlcCol;
+    public BoxCollider2D RunnCol;
 
-    // ======== 플레이어 상태 ========
     private int maxLives = 3;
     private int currentLives;
-    private int coinCount = 0;
+    private int dreamEnergyCount = 0;
 
     private float invincibleTime = 1.5f;
-    private bool isHurt;
+    private float hurtDuration = 0.3f;
 
-    // ======== 점프 관련 상태 ========
+    private bool isHurt = false;
+    private bool isInvincible = false;
+
     private bool isGround = false;
     private int jumpCount = 0;
     private bool isJumping = false;
     public int jumpLevel = 2;
 
-    // ======== 기타 컴포넌트 ========
     private SpriteRenderer spr;
-    Color halfA = new Color(1, 1, 1, 0.5f);  // 투명도 깜빡임 효과
+    Color halfA = new Color(1, 1, 1, 0.5f);
     Color fullA = new Color(1, 1, 1, 1);
-
-    // ========== Unity 메서드 ==========
 
     private void Awake()
     {
-        // 싱글톤 설정
         if (instance == null) instance = this;
         else Destroy(gameObject);
 
-        // 컴포넌트 참조 캐싱
         rb = GetComponent<Rigidbody2D>();
         PlayerAnimator = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
 
-        // 기본 콜라이더 설정
         SlcCol.enabled = false;
         RunnCol.enabled = true;
     }
 
     private void Start()
     {
-        // 초기 체력 및 코인 UI 설정
         currentLives = maxLives;
         UIManager.instance.UpdateLivesUI(currentLives);
-        UIManager.instance.UpdateCoinUI(coinCount);
+        UIManager.instance.UpdateDreamEnergyUI(dreamEnergyCount);
         SetGroundTrue();
+        shieldObject.SetActive(false);
     }
 
     private void Update()
     {
-        if (isHurt) return;
-
         Slide();
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // 입력 지연 보정
             Invoke("TryJump", 0.1f);
         }
 
@@ -85,8 +73,6 @@ public class PlayerController : MonoBehaviour
             ActivateShield();
         }
     }
-
-    // ========== 충돌 처리 ==========
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -105,9 +91,9 @@ public class PlayerController : MonoBehaviour
         {
             if (isShieldActive)
             {
-                Destroy(collider.gameObject); // 쉴드 상태면 적 제거
+                Destroy(collider.gameObject);
             }
-            else if (!isHurt)
+            else if (!isInvincible)
             {
                 TakeDamage();
                 Destroy(collider.gameObject);
@@ -115,11 +101,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // ========== 데미지 및 죽음 처리 ==========
-
     public void TakeDamage()
     {
-        if (isHurt) return;
+        if (isInvincible) return;
 
         currentLives--;
         UIManager.instance.UpdateLivesUI(currentLives);
@@ -131,23 +115,31 @@ public class PlayerController : MonoBehaviour
         else
         {
             isHurt = true;
+            isInvincible = true;
             PlayerAnimator.SetInteger("State", 3);
-            rb.velocity = Vector2.zero;
-            StartCoroutine(AlphaBlink());
+
+            Invoke("EndHurtAnimation", hurtDuration);
             Invoke("RecoverFromDamage", invincibleTime);
+
+            StartCoroutine(AlphaBlink());
         }
+    }
+
+    void EndHurtAnimation()
+    {
+        isHurt = false;
+        PlayerAnimator.SetInteger("State", 0);
     }
 
     void RecoverFromDamage()
     {
-        isHurt = false;
-        PlayerAnimator.SetInteger("State", 0);
+        isInvincible = false;
         spr.color = fullA;
     }
 
     IEnumerator AlphaBlink()
     {
-        while (isHurt)
+        while (isInvincible)
         {
             spr.color = halfA;
             yield return new WaitForSeconds(0.1f);
@@ -159,10 +151,8 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         Debug.Log("Game Over");
-        // TODO: 게임 오버 처리 추가
+        // TODO: 게임 오버 처리
     }
-
-    // ========== 점프/슬라이드 ==========
 
     void TryJump()
     {
@@ -208,14 +198,12 @@ public class PlayerController : MonoBehaviour
         isGround = true;
     }
 
-    // ========== 쉴드 및 기타 유틸 ==========
-
     public void ActivateShield()
     {
-        if (isShieldActive || coinCount < 1) return;
+        if (isShieldActive || dreamEnergyCount < 2) return;
 
-        coinCount--;
-        UIManager.instance.UpdateCoinUI(coinCount);
+        dreamEnergyCount -= 2;
+        UIManager.instance.UpdateDreamEnergyUI(dreamEnergyCount);
 
         isShieldActive = true;
         StartCoroutine(ShieldRoutine());
@@ -235,9 +223,15 @@ public class PlayerController : MonoBehaviour
         UIManager.instance.UpdateLivesUI(currentLives);
     }
 
-    public void AddCoin()
+    public void AddDreamEnergy()
     {
-        coinCount++;
-        UIManager.instance.UpdateCoinUI(coinCount);
+        dreamEnergyCount++;
+        UIManager.instance.UpdateDreamEnergyUI(dreamEnergyCount);
+
+        if (dreamEnergyCount >= 2 && !isShieldActive)
+        {
+            dreamEnergyCount = 0;
+            ActivateShield();
+        }
     }
 }

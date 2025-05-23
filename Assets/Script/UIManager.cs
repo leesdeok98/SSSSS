@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     public Image[] heartImages;
-    public TextMeshProUGUI coinText;
+    public TextMeshProUGUI dreamEnergyText;
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         UpdateLivesUI(heartImages.Length);
-        UpdateCoinUI(0);
+        UpdateDreamEnergyUI(0);
     }
 
     public void UpdateLivesUI(int lives)
@@ -33,11 +33,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateCoinUI(int coinCount)
+    public void UpdateDreamEnergyUI(int count)
     {
-        if (coinText != null)
+        if (dreamEnergyText != null)
         {
-            coinText.text = "¡¿ {coinCount}";
+            dreamEnergyText.text = "¡¿ " + count.ToString();
         }
     }
 }
