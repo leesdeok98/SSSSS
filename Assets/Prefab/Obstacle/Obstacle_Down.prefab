@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4309666526567294268}
   - component: {fileID: 2239456648528967472}
   - component: {fileID: -2873488116911486770}
+  - component: {fileID: 5620172768458576942}
+  - component: {fileID: 8215647777919995681}
   m_Layer: 0
   m_Name: Obstacle_Down
   m_TagString: Obstacle
@@ -29,8 +31,8 @@ Transform:
   m_GameObject: {fileID: 7504389528908389390}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.6994, y: -3.078, z: -9}
-  m_LocalScale: {x: 0.12, y: 0.12, z: 0.2911963}
+  m_LocalPosition: {x: -6.6994, y: -3.078, z: 0}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -116,13 +118,13 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.4455911, y: -3.9459386}
+  m_Offset: {x: 0, y: 5.7879143}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 12.88, y: 16.71}
     newSize: {x: 17.47, y: 16.71}
     adaptiveTilingThreshold: 0.5
@@ -130,7 +132,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.9385636, y: 7.6362486}
+  m_Size: {x: 3.7566416, y: 11.575829}
   m_EdgeRadius: 0
 --- !u!114 &2239456648528967472
 MonoBehaviour:
@@ -144,7 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97245c5b18f7c124785a28d91bd53af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
   images:
   - {fileID: -1847418716, guid: 39355651646c0f847bb26e65669d66f6, type: 3}
   - {fileID: -1714334146, guid: 5c7ceaf80d1369b4d9e1b503b72f6e27, type: 3}
@@ -175,3 +176,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5620172768458576942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7504389528908389390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8942953665bc6544b5af9f1c0fa57ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+--- !u!114 &8215647777919995681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7504389528908389390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a48ca2ec7fc06a47bff230b29e1ceca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

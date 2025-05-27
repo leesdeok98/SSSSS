@@ -4,38 +4,26 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    public float moveSpeed = 5f;
     public Sprite[] images;
-    SpriteRenderer spriteRender;
+    private SpriteRenderer spriteRender;
+
     void Awake()
     {
         spriteRender = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
-    {
-        transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
-    }
-
     public void Init(int type)
     {
-        if(type >= images.Length)
-            return;
+        if (type >= images.Length) return;
         spriteRender.sprite = images[type];
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("플레이어와 충돌!");//Destroy(gameObject); // 또는 데미지 처리
-
+            Debug.Log("플레이어와 충돌!");
             PlayerController.instance.TakeDamage();
         }
-
-    }
-
-    void OnBecameInvisible()
-    {
-        Destroy(gameObject); // 화면 밖으로 나가면 삭제
     }
 }
