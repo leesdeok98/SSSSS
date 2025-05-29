@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BackgroundScrolling : MonoBehaviour
 {    
-    private float offset = 20.6f;
-    private float resentPosX = -19.3f;
+    private float offset = 24f;
+    private float resentPosX = -23.5f;
     public float speed;
     public SpriteRenderer[] backgrounds;
     
