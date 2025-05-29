@@ -8,12 +8,9 @@ public class SoundSliderUI : MonoBehaviour
 {
     public AudioMixer audioMixer;
 
-    public AudioSource audioSource;
-  
-
-    public Slider MASTERSlider;
     public Slider BGMSlider;
     public Slider SFXSlider;
+    public Slider MASTERSlider;
 
 
     public void Start()
@@ -21,20 +18,42 @@ public class SoundSliderUI : MonoBehaviour
         MASTERSlider.value = 0.50005f;
         BGMSlider.value = 0.50005f;
         SFXSlider.value = 0.50005f;
-        audioMixer.SetFloat("BGMVolume", Mathf.Log10(BGMSlider.value) * 20);
-        audioMixer.SetFloat("SFXVolume", Mathf.Log10(SFXSlider.value) * 20);
-        audioMixer.SetFloat("MASTERVolume", Mathf.Log10(MASTERSlider.value) * 20);
+        audioMixer.SetFloat("BGM", Mathf.Log10(BGMSlider.value) * 20);
+        audioMixer.SetFloat("SFX", Mathf.Log10(SFXSlider.value) * 20);
+        audioMixer.SetFloat("MASTER", Mathf.Log10(MASTERSlider.value) * 20);
     }
+
     public void BGMSetLevel(float value)
     {
-        audioMixer.SetFloat("BGMVolume", Mathf.Log10(value) * 20);
+        if (value <= 0.001f) // 거의 0에 가까우면 완전 음소거
+        {
+            audioMixer.SetFloat("BGM", -80f);
+        }
+        else
+        {
+            audioMixer.SetFloat("BGM", Mathf.Log10(value) * 20);
+        }
     }
     public void SFXSetLevel(float value)
     {
-        audioMixer.SetFloat("SFXVolume", Mathf.Log10(value) * 20);
+        if (value <= 0.001f) 
+        {
+            audioMixer.SetFloat("MASTER", -80f); 
+        }
+        else
+        {
+            audioMixer.SetFloat("MASTER", Mathf.Log10(value) * 20);
+        }
     }
     public void MASTERSetLevel(float value)
     {
-        audioMixer.SetFloat("MASTERVolume", Mathf.Log10(value) * 20);
+        if (value <= 0.001f) 
+        {
+            audioMixer.SetFloat("SFX", -80f);
+        }
+        else
+        {
+            audioMixer.SetFloat("SFX", Mathf.Log10(value) * 20);
+        }
     }
 }
