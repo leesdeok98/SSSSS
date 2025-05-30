@@ -89,7 +89,7 @@ public class ObstacleSpawn : MonoBehaviour
         }
         GameObject newObstacle = Instantiate(obstaclePrefabs[type], spawnPoints[1-type].position, Quaternion.identity);
         Obstacle obs = newObstacle.GetComponent<Obstacle>();
-        obs.Init(imageType);
+        //obs.Init(imageType);
         obstaclePattenCurrentIndex++;
     }
     void SpawnObstacleUp2()

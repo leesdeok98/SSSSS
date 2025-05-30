@@ -445,8 +445,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC548\uB155\uD558\uC138\uC694 dkssudgktpdy"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 51e0a4eb42357354784a227f5da53a30, type: 2}
-  m_sharedMaterial: {fileID: 374967126857192872, guid: 51e0a4eb42357354784a227f5da53a30, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cd37b898470c60a4c8ad69424f68a31d, type: 2}
+  m_sharedMaterial: {fileID: 545840902073874278, guid: cd37b898470c60a4c8ad69424f68a31d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

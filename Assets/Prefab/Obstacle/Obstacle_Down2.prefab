@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: -4089283600229221847}
   - component: {fileID: -2044431909134830676}
   - component: {fileID: 6209000186428121258}
-  - component: {fileID: 5354584739412436801}
   - component: {fileID: 4941398546280128511}
   m_Layer: 9
   m_Name: Obstacle_Down2
@@ -173,20 +172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97245c5b18f7c124785a28d91bd53af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  images: []
---- !u!114 &5354584739412436801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7980814156774919102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8942953665bc6544b5af9f1c0fa57ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
 --- !u!114 &4941398546280128511
 MonoBehaviour:
   m_ObjectHideFlags: 0
