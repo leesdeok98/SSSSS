@@ -8,8 +8,9 @@ using UnityEngine.SceneManagement;
 public class SoundSet : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
-    
-    
+    [SerializeField] private AudioManager audioManager;
+
+
 
     private bool isPaused = false;
 
@@ -30,6 +31,7 @@ public class SoundSet : MonoBehaviour
             TogglePause();
             if (isPaused)
                 return;
+            
         }
     }
     void TogglePause()
@@ -40,11 +42,13 @@ public class SoundSet : MonoBehaviour
         {
             Time.timeScale = 0f; // ���� �Ͻ�����
             pausePanel.SetActive(true);
+            audioManager.StopBGM(); // BGM 정지
         }
         else
         {
             Time.timeScale = 1f; // ���� �簳
             pausePanel.SetActive(false);
+            audioManager.PlayBGM(0); // BGM 다시 재생
         }
     }
     public void ResumeGame()
@@ -52,6 +56,7 @@ public class SoundSet : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1f;
         pausePanel.SetActive(false);
+        audioManager.PlayBGM(0); // BGM 다시 재생
     }
     public void QuitToMain()
     {

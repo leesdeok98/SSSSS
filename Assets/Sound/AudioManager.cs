@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -13,9 +15,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioMixerGroup SFXMixerGroup;
 
     [Header("#BGM)")]
-    public AudioClip BGMClip;
+    public AudioClip[] BGMClips;
     public float BGMVoulme;
     AudioSource BGMPlayer;
+
 
     [Header("#SFX)")]
     public AudioClip[] SFXClips;
@@ -30,6 +33,41 @@ public class AudioManager : MonoBehaviour
     {
         instance = this;
         Init();
+
+        BGMClips = new AudioClip[4];
+        BGMClips[0] = Resources.Load<AudioClip>("메인타이틀");
+        BGMClips[1] = Resources.Load<AudioClip>("챕터1");
+        BGMClips[2] = Resources.Load<AudioClip>("챕터2");
+        BGMClips[3] = Resources.Load<AudioClip>("챕터3");
+    }
+
+    public void PlayBGM(int Index)
+    {
+        if (Index < 0 || Index >= BGMClips.Length)
+        {
+            Debug.LogError("BGM 인덱스가 범위를 벗어났습니다: " + Index);
+            return;
+        }
+        if (BGMPlayer.clip == BGMClips[Index] && BGMPlayer.isPlaying)
+        {
+            return;
+        }
+
+        BGMPlayer.clip = BGMClips[Index];
+        BGMPlayer.Play();
+    }
+
+    public void StopBGM()
+    {
+        if (BGMPlayer.isPlaying)
+        {
+            BGMPlayer.Stop();
+        }
+    }
+
+    void Start()
+    {
+        PlayBGM(0); // 초기 BGM 재생, 인덱스 0은 메인 타이틀 BGM 
     }
 
     void Init()
@@ -39,12 +77,10 @@ public class AudioManager : MonoBehaviour
         Debug.Log("BGMPlayer 오브젝트가 생성되었습니다");
         BGMObject.transform.parent = transform;
         BGMPlayer = BGMObject.AddComponent<AudioSource>();
-        BGMPlayer.clip = BGMClip;
         BGMPlayer.outputAudioMixerGroup = audioMixer;
         BGMPlayer.loop = true;
         BGMPlayer.volume = BGMVoulme;
         BGMPlayer.playOnAwake = false;
-        BGMPlayer.Play();
         BGMPlayer.outputAudioMixerGroup = BGMMixerGroup;
 
         // 효과음 플레이어 초기화

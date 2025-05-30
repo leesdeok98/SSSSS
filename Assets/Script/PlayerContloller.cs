@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Invoke("TryJump", 0.1f);
+            Invoke("TryJump", 0.08f);
         }
 
         if (Input.GetKeyDown(KeyCode.X))
