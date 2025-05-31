@@ -64,7 +64,22 @@ public class AudioManager : MonoBehaviour
             BGMPlayer.Stop();
         }
     }
+    
+    public void PauseBGM()
+    {
+        if (BGMPlayer != null &&  BGMPlayer.isPlaying)
+        {
+            BGMPlayer.Pause(); // 일시정지
+        }
+    }
 
+    public void UnPauseBGM()
+    {
+        if (BGMPlayer != null)
+        {
+            BGMPlayer.UnPause(); // 이어서 재생
+        }    
+    }
     void Start()
     {
         PlayBGM(0); // 초기 BGM 재생, 인덱스 0은 메인 타이틀 BGM 

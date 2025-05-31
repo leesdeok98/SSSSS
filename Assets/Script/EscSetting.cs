@@ -42,22 +42,25 @@ public class SoundSet : MonoBehaviour
         {
             Time.timeScale = 0f; // ���� �Ͻ�����
             pausePanel.SetActive(true);
-            audioManager.StopBGM(); // BGM 정지
+            audioManager.PauseBGM(); // BGM 정지
+            Debug.Log("BGM 멈춤");
         }
         else
         {
             Time.timeScale = 1f; // ���� �簳
             pausePanel.SetActive(false);
-            audioManager.PlayBGM(0); // BGM 다시 재생
+            audioManager.UnPauseBGM(); // BGM 다시 재생
+            Debug.Log("BGM 시작");
         }
     }
+
     public void ResumeGame()
     {
         isPaused = false;
         Time.timeScale = 1f;
         pausePanel.SetActive(false);
-        audioManager.PlayBGM(0); // BGM 다시 재생
     }
+
     public void QuitToMain()
     {
         

@@ -973,7 +973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 1757253256}
-  audioManager: {fileID: 0}
+  audioManager: {fileID: 1577850231}
 --- !u!114 &72932253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -996,6 +996,9 @@ MonoBehaviour:
   RunnCol: {fileID: 1276956154}
   dreamEnergyCount: 1
   jumpLevel: 2
+  runDistance: 8
+  runToEdgeSpeed: 5
+  currentDirection: 0
 --- !u!212 &72932254
 SpriteRenderer:
   m_ObjectHideFlags: 0
