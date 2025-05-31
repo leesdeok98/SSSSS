@@ -884,8 +884,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.493267, y: 1.8381819}
-    newSize: {x: 1.493267, y: 1.8381819}
+    oldSize: {x: 1.7083334, y: 2.1083333}
+    newSize: {x: 2.05, y: 2.53}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1037,12 +1037,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2048054602, guid: 848f2e48c3acda347b77e4f469f56a64, type: 3}
+  m_Sprite: {fileID: 603752531, guid: 72124613de0cc4247a47971fbb1ba0a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.493267, y: 1.8381819}
+  m_Size: {x: 2.05, y: 2.53}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1192,7 +1192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4309666526567294268, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4309666526567294268, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -1499,6 +1499,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 668182841, guid: 66547b5b1c9d6f143bd29e33296634c3, type: 3}
+    - target: {fileID: 4309666526567294268, guid: 438effe0cb642694482b4c4c8dd6668d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 9.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309666526567294268, guid: 438effe0cb642694482b4c4c8dd6668d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 25.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7504389528908389390, guid: 438effe0cb642694482b4c4c8dd6668d, type: 3}
       propertyPath: m_Name
       value: Obstacke_Up
@@ -2364,7 +2372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4309666526567294268, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7504389528908389390, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}
       propertyPath: m_Name
@@ -3763,6 +3771,10 @@ PrefabInstance:
     - target: {fileID: 328496320639601241, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309666526567294268, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7504389528908389390, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}
       propertyPath: m_Name
@@ -5567,7 +5579,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -7909,6 +7921,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1515321566}
     m_Modifications:
+    - target: {fileID: 3234948592434058934, guid: 773b37295ed16f74c962e95ca764d51d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4097635327097437418, guid: 773b37295ed16f74c962e95ca764d51d, type: 3}
       propertyPath: m_Name
       value: t_3 (2)
@@ -8032,7 +8048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4309666526567294268, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7504389528908389390, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}
       propertyPath: m_Name
@@ -8345,6 +8361,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1515321566}
     m_Modifications:
+    - target: {fileID: -4089283600229221847, guid: 4f4963ccd160c3148b88a3374ad0e948, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 17.9
+      objectReference: {fileID: 0}
+    - target: {fileID: -4089283600229221847, guid: 4f4963ccd160c3148b88a3374ad0e948, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: 3216805175390989010, guid: 4f4963ccd160c3148b88a3374ad0e948, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -10946,7 +10970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4309666526567294268, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7504389528908389390, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}
       propertyPath: m_Name
@@ -11557,6 +11581,10 @@ PrefabInstance:
     - target: {fileID: 328496320639601241, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309666526567294268, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7504389528908389390, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}
       propertyPath: m_Name
@@ -12438,7 +12466,7 @@ Transform:
   m_GameObject: {fileID: 1551965608}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 677.6, y: -3.8, z: 0}
+  m_LocalPosition: {x: 700.2, y: -3.8, z: 0}
   m_LocalScale: {x: 1.0119673, y: 1.0119673, z: 1.0119673}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14822,6 +14850,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1515321566}
     m_Modifications:
+    - target: {fileID: -4089283600229221847, guid: 4f4963ccd160c3148b88a3374ad0e948, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 17.9
+      objectReference: {fileID: 0}
+    - target: {fileID: -4089283600229221847, guid: 4f4963ccd160c3148b88a3374ad0e948, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: 3216805175390989010, guid: 4f4963ccd160c3148b88a3374ad0e948, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -14891,6 +14927,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1515321566}
     m_Modifications:
+    - target: {fileID: 3234948592434058934, guid: 773b37295ed16f74c962e95ca764d51d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4097635327097437418, guid: 773b37295ed16f74c962e95ca764d51d, type: 3}
       propertyPath: m_Name
       value: t_3 (1)
@@ -16278,6 +16318,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4309666526567294268, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7504389528908389390, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}
       propertyPath: m_Name
       value: Obstacle_Down (2)
@@ -16582,6 +16626,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1515321566}
     m_Modifications:
+    - target: {fileID: 3234948592434058934, guid: 773b37295ed16f74c962e95ca764d51d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4097635327097437418, guid: 773b37295ed16f74c962e95ca764d51d, type: 3}
       propertyPath: m_Name
       value: t_3

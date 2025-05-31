@@ -28,11 +28,13 @@ public class PlayerController : MonoBehaviour
 
     private bool isHurt = false;
     private bool isInvincible = false;
+    private bool playerdie = false;
 
     private bool isGround = false;
     private int jumpCount = 0;
     private bool isJumping = false;
     public int jumpLevel = 2;
+    private bool isPaused = false;
 
     private SpriteRenderer spr;
     Color halfA = new Color(1, 1, 1, 0.5f);
@@ -112,6 +114,7 @@ public class PlayerController : MonoBehaviour
         if (currentLives <= 0)
         {
             Die();
+            
         }
         else
         {
@@ -151,7 +154,14 @@ public class PlayerController : MonoBehaviour
 
     void Die()
     {
+        playerdie = true;
         Debug.Log("Game Over");
+        PlayerAnimator.SetInteger("State", 4);
+        SpeedManager.Instance.moveSpeed = 0f;
+        BackgroundScrolling.Instance.speed = 0f;
+
+        //rb.simulated = false;
+
         // TODO: 게임 오버 처리
     }
 
