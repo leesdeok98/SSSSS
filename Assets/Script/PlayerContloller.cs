@@ -39,6 +39,17 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spr;
     Color halfA = new Color(1, 1, 1, 0.5f);
     Color fullA = new Color(1, 1, 1, 1);
+    [Header("Auto Run Settings")]
+    public float runDistance = 8f;
+    public float runToEdgeSpeed = 5f;
+    private bool isRunningToEdge = false;
+    private bool isFeathering = false;
+
+    public enum Direction { Right, Left }
+    public Direction currentDirection = Direction.Right;
+
+    private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rigid;
 
     private void Awake()
     {
@@ -48,6 +59,9 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         PlayerAnimator = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rigid = GetComponent<Rigidbody2D>();
+        
 
         SlcCol.enabled = false;
         RunnCol.enabled = true;
@@ -90,6 +104,13 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+
+        if (collider.gameObject.CompareTag("RunTrigger") && !isRunningToEdge && isGround && !isFeathering)
+        {
+            StartCoroutine(RunFixedDistance());
+        }
+
+
         if (collider.CompareTag("Enemy") || collider.CompareTag("Lightning"))
         {
             if (isShieldActive)
@@ -103,6 +124,61 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+IEnumerator RunFixedDistance()
+{
+    isRunningToEdge = true;
+    PlayerAnimator.SetInteger("State", 0);
+
+
+
+    float startX = transform.position.x;
+    float targetX = (currentDirection == Direction.Right) ? startX + runDistance : startX - runDistance;
+
+    spriteRenderer.flipX = (currentDirection == Direction.Left);
+
+    while ((currentDirection == Direction.Right && transform.position.x < targetX) ||
+           (currentDirection == Direction.Left && transform.position.x > targetX))
+    {
+        rigid.velocity = new Vector2(
+            (currentDirection == Direction.Right ? runToEdgeSpeed : -runToEdgeSpeed),
+            rigid.velocity.y
+        );
+        yield return null;
+    }
+
+    rigid.velocity = Vector2.zero;
+    yield return new WaitForSeconds(0.5f);
+
+    FlipDirection();
+    isRunningToEdge = false;
+
+
+}
+
+void FlipDirection()
+{
+
+    currentDirection = (currentDirection == Direction.Right) ? Direction.Left : Direction.Right;
+    spriteRenderer.flipX = (currentDirection == Direction.Left);
+
+
+    int scrollerDir = (currentDirection == Direction.Right) ? 1 : -1;
+    foreach (var scroller in FindObjectsOfType<Scorller>())
+    {
+        scroller.SetDirection(scrollerDir);
+    }
+
+
+    if (BackgroundScrolling.Instance != null)
+    {
+        BackgroundScrolling.Instance.FlipDirection();
+    }
+}
+
+
+
+
+
 
     public void TakeDamage()
     {
@@ -162,7 +238,7 @@ public class PlayerController : MonoBehaviour
 
         //rb.simulated = false;
 
-        // TODO: °ÔÀÓ ¿À¹ö Ã³¸®
+        // TODO: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     }
 
     void TryJump()
@@ -239,7 +315,7 @@ public class PlayerController : MonoBehaviour
         dreamEnergyCount++;
         UIManager.instance.UpdateDreamEnergyUI(dreamEnergyCount);
 
-        // Á¶°ÇÀ» ¸íÈ®È÷: 2°³ ÀÌ»óÀÌ¸é ½¯µå ¹ßµ¿
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È®ï¿½ï¿½: 2ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ßµï¿½
         if (dreamEnergyCount >= 2 && !isShieldActive)
         {
             ActivateShield();
