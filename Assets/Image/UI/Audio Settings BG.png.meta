@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8c3ff35021a13b0479f5c63ad3c79405
+guid: ee35cf756024fd5468ae8831166c2761
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -93,24 +93,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_0
+      name: Audio Settings BG_0
       rect:
         serializedVersion: 2
         x: 280
@@ -124,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd3bcab5eaf33774c8c29b0b94df9a68
-      internalID: -1711622504
+      spriteID: 6a7886dd3ca96ce46aed24b8b97173f1
+      internalID: -1361284808
       vertices: []
       indices: 
       edges: []
@@ -141,7 +128,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      UI_0: -1711622504
+      Audio Settings BG_0: -1361284808
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
