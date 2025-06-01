@@ -10,6 +10,7 @@ TagManager:
   - Coin
   - Enemy
   - DreamEnergy
+  - RunTrigger
   layers:
   - Default
   - TransparentFX
