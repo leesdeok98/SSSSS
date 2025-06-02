@@ -52,7 +52,7 @@ public class PlayerMoveing : MonoBehaviour
     {
         currentLives = maxLives;
         UIManager.instance.UpdateLivesUI(currentLives);
-        UIManager.instance.UpdateDreamEnergyUI(coinCount);
+        //UIManager.instance.UpdateDreamEnergyUI(coinCount);
         SetGroundTrue();
     }
 
@@ -193,7 +193,7 @@ public class PlayerMoveing : MonoBehaviour
         if (isShieldActive || coinCount < 1) return;
 
         coinCount--;
-        UIManager.instance.UpdateDreamEnergyUI(coinCount);
+        //UIManager.instance.UpdateDreamEnergyUI(coinCount);
 
         isShieldActive = true;
         StartCoroutine(ShieldRoutine());
@@ -216,6 +216,6 @@ public class PlayerMoveing : MonoBehaviour
     public void AddCoin()
     {
         coinCount++;
-        UIManager.instance.UpdateDreamEnergyUI(coinCount);
+        //UIManager.instance.UpdateDreamEnergyUI(coinCount);
     }
 }

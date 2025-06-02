@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private int maxLives = 3;
     private int currentLives;
-    public int dreamEnergyCount = 0;
+    public int CoinCount = 0;
 
     private float invincibleTime = 1.5f;
     private float hurtDuration = 0.3f;
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     public enum Direction { Right, Left }
     public Direction currentDirection = Direction.Right;
 
-    
+
     private Rigidbody2D rigid;
 
     private void Awake()
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         PlayerAnimator = GetComponent<Animator>();
-        spr = GetComponent<SpriteRenderer>(); 
+        spr = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
 
         SlcCol.enabled = false;
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
     {
         currentLives = maxLives;
         UIManager.instance.UpdateLivesUI(currentLives);
-        UIManager.instance.UpdateDreamEnergyUI(dreamEnergyCount);
+        UIManager.instance.UpdateCoinUI(0,0);
         SetGroundTrue();
         shieldObject.SetActive(false);
     }
@@ -288,10 +288,10 @@ public class PlayerController : MonoBehaviour
 
     public void ActivateShield()
     {
-        if (isShieldActive || dreamEnergyCount < 2) return;
+        if (isShieldActive || CoinCount < 2) return;
 
-        dreamEnergyCount -= 2;
-        UIManager.instance.UpdateDreamEnergyUI(dreamEnergyCount);
+        CoinCount -= 2;
+        UIManager.instance.UpdateCoinUI(0,0);
 
         isShieldActive = true;
         StartCoroutine(ShieldRoutine());
@@ -313,10 +313,10 @@ public class PlayerController : MonoBehaviour
 
     public void AddDreamEnergy()
     {
-        dreamEnergyCount++;
-        UIManager.instance.UpdateDreamEnergyUI(dreamEnergyCount);
+        CoinCount++;
+        UIManager.instance.UpdateCoinUI(0,0);
 
-        if (dreamEnergyCount >= 2 && !isShieldActive)
+        if (CoinCount >= 2 && !isShieldActive)
         {
             ActivateShield();
         }
