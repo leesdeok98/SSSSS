@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if(playerdie) return;
             Invoke("TryJump", 0.08f);
         }
 
@@ -147,6 +148,8 @@ public class PlayerController : MonoBehaviour
         isRunningToEdge = true;
         PlayerAnimator.SetInteger("State", 0);
 
+
+
         float startX = transform.position.x;
         float targetX = (currentDirection == Direction.Right) ? startX + runDistance : startX - runDistance;
 
@@ -167,18 +170,23 @@ public class PlayerController : MonoBehaviour
 
         FlipDirection();
         isRunningToEdge = false;
+        GetComponent<SpriteRenderer>().flipX = true;
+
     }
 
     void FlipDirection()
     {
+
         currentDirection = (currentDirection == Direction.Right) ? Direction.Left : Direction.Right;
         spr.flipX = (currentDirection == Direction.Left);
+
 
         int scrollerDir = (currentDirection == Direction.Right) ? 1 : -1;
         foreach (var scroller in FindObjectsOfType<Scorller>())
         {
             scroller.SetDirection(scrollerDir);
         }
+
 
         if (BackgroundScrolling.Instance != null)
         {
@@ -207,6 +215,12 @@ public class PlayerController : MonoBehaviour
             Invoke("RecoverFromDamage", invincibleTime);
 
             StartCoroutine(AlphaBlink());
+
+            StopManager stopManager = FindObjectOfType<StopManager>();
+            if (stopManager != null)
+            {
+                stopManager.speed = 0f;
+            }
         }
     }
 
@@ -236,10 +250,17 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         playerdie = true;
+        isControlLocked = true; // 🔧 이거 추가!
         Debug.Log("Game Over");
         PlayerAnimator.SetInteger("State", 4);
         SpeedManager.Instance.moveSpeed = 0f;
         BackgroundScrolling.Instance.speed = 0f;
+
+        StopManager stopManager = FindObjectOfType<StopManager>();
+        if (stopManager != null)
+        {
+            stopManager.speed = 0f;
+        }
     }
 
     void TryJump()
