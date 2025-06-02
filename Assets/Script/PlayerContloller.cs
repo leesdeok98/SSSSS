@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
     private int currentLives;
     public int dreamEnergyCount = 0;
 
-
     private float invincibleTime = 1.5f;
     private float hurtDuration = 0.3f;
 
@@ -36,9 +35,12 @@ public class PlayerController : MonoBehaviour
     public int jumpLevel = 2;
     private bool isPaused = false;
 
+    private bool isControlLocked = false; // ✅ 입력 잠금 변수 추가
+
     private SpriteRenderer spr;
     Color halfA = new Color(1, 1, 1, 0.5f);
     Color fullA = new Color(1, 1, 1, 1);
+
     [Header("Auto Run Settings")]
     public float runDistance = 8f;
     public float runToEdgeSpeed = 5f;
@@ -48,7 +50,7 @@ public class PlayerController : MonoBehaviour
     public enum Direction { Right, Left }
     public Direction currentDirection = Direction.Right;
 
-    private SpriteRenderer spriteRenderer;
+    
     private Rigidbody2D rigid;
 
     private void Awake()
@@ -58,10 +60,8 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         PlayerAnimator = GetComponent<Animator>();
-        spr = GetComponent<SpriteRenderer>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spr = GetComponent<SpriteRenderer>(); 
         rigid = GetComponent<Rigidbody2D>();
-        
 
         SlcCol.enabled = false;
         RunnCol.enabled = true;
@@ -78,6 +78,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (isControlLocked) return; // ✅ 컨트롤 잠금 시 입력 무시
+
         Slide();
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -104,13 +106,27 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-
-        if (collider.gameObject.CompareTag("RunTrigger") && !isRunningToEdge && isGround && !isFeathering)
+        // 테스트용 RunTrigger 작동 여부 확인
+        if (collider.gameObject.CompareTag("RunTrigger"))
         {
+            Debug.Log("✅ 테스트용 RunTrigger 작동 확인!");
             StartCoroutine(RunFixedDistance());
         }
 
+        // Stop 트리거도 여기서 처리
+        if (collider.CompareTag("Stop"))
+        {
+            Debug.Log("🚫 Stop Trigger Detected! Controls locked for 3 seconds.");
 
+            // 슬라이딩 강제 해제
+            PlayerAnimator.SetInteger("State", 0);
+            SlcCol.enabled = false;
+            RunnCol.enabled = true;
+
+            StartCoroutine(LockControlsForSeconds(3f));
+        }
+
+        // 적 또는 번개 충돌 처리
         if (collider.CompareTag("Enemy") || collider.CompareTag("Lightning"))
         {
             if (isShieldActive)
@@ -124,61 +140,51 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-IEnumerator RunFixedDistance()
-{
-    isRunningToEdge = true;
-    PlayerAnimator.SetInteger("State", 0);
 
 
-
-    float startX = transform.position.x;
-    float targetX = (currentDirection == Direction.Right) ? startX + runDistance : startX - runDistance;
-
-    spriteRenderer.flipX = (currentDirection == Direction.Left);
-
-    while ((currentDirection == Direction.Right && transform.position.x < targetX) ||
-           (currentDirection == Direction.Left && transform.position.x > targetX))
+    IEnumerator RunFixedDistance()
     {
-        rigid.velocity = new Vector2(
-            (currentDirection == Direction.Right ? runToEdgeSpeed : -runToEdgeSpeed),
-            rigid.velocity.y
-        );
-        yield return null;
+        isRunningToEdge = true;
+        PlayerAnimator.SetInteger("State", 0);
+
+        float startX = transform.position.x;
+        float targetX = (currentDirection == Direction.Right) ? startX + runDistance : startX - runDistance;
+
+        spr.flipX = (currentDirection == Direction.Left);
+
+        while ((currentDirection == Direction.Right && transform.position.x < targetX) ||
+               (currentDirection == Direction.Left && transform.position.x > targetX))
+        {
+            rigid.velocity = new Vector2(
+                (currentDirection == Direction.Right ? runToEdgeSpeed : -runToEdgeSpeed),
+                rigid.velocity.y
+            );
+            yield return null;
+        }
+
+        rigid.velocity = Vector2.zero;
+        yield return new WaitForSeconds(0.5f);
+
+        FlipDirection();
+        isRunningToEdge = false;
     }
 
-    rigid.velocity = Vector2.zero;
-    yield return new WaitForSeconds(0.5f);
-
-    FlipDirection();
-    isRunningToEdge = false;
-
-
-}
-
-void FlipDirection()
-{
-
-    currentDirection = (currentDirection == Direction.Right) ? Direction.Left : Direction.Right;
-    spriteRenderer.flipX = (currentDirection == Direction.Left);
-
-
-    int scrollerDir = (currentDirection == Direction.Right) ? 1 : -1;
-    foreach (var scroller in FindObjectsOfType<Scorller>())
+    void FlipDirection()
     {
-        scroller.SetDirection(scrollerDir);
+        currentDirection = (currentDirection == Direction.Right) ? Direction.Left : Direction.Right;
+        spr.flipX = (currentDirection == Direction.Left);
+
+        int scrollerDir = (currentDirection == Direction.Right) ? 1 : -1;
+        foreach (var scroller in FindObjectsOfType<Scorller>())
+        {
+            scroller.SetDirection(scrollerDir);
+        }
+
+        if (BackgroundScrolling.Instance != null)
+        {
+            BackgroundScrolling.Instance.FlipDirection();
+        }
     }
-
-
-    if (BackgroundScrolling.Instance != null)
-    {
-        BackgroundScrolling.Instance.FlipDirection();
-    }
-}
-
-
-
-
-
 
     public void TakeDamage()
     {
@@ -190,7 +196,6 @@ void FlipDirection()
         if (currentLives <= 0)
         {
             Die();
-            
         }
         else
         {
@@ -235,15 +240,11 @@ void FlipDirection()
         PlayerAnimator.SetInteger("State", 4);
         SpeedManager.Instance.moveSpeed = 0f;
         BackgroundScrolling.Instance.speed = 0f;
-
-        //rb.simulated = false;
-
-        // TODO: ���� ���� ó��
     }
 
     void TryJump()
     {
-        if (isHurt) return;
+        if (isHurt || isControlLocked) return; // ✅ 잠금 확인 추가
 
         if (isGround)
         {
@@ -264,7 +265,7 @@ void FlipDirection()
 
     void Slide()
     {
-        if (isHurt) return;
+        if (isHurt || isControlLocked) return; // ✅ 잠금 확인 추가
 
         if (Input.GetKey(KeyCode.C) && isGround)
         {
@@ -315,12 +316,16 @@ void FlipDirection()
         dreamEnergyCount++;
         UIManager.instance.UpdateDreamEnergyUI(dreamEnergyCount);
 
-        // ������ ��Ȯ��: 2�� �̻��̸� ���� �ߵ�
         if (dreamEnergyCount >= 2 && !isShieldActive)
         {
             ActivateShield();
         }
     }
 
-    
+    private IEnumerator LockControlsForSeconds(float seconds)
+    {
+        isControlLocked = true;
+        yield return new WaitForSeconds(seconds);
+        isControlLocked = false;
+    }
 }

@@ -17,12 +17,7 @@ public class DreamEnergy : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
-
-        if (transform.position.x <= destroyX)
-        {
-            Destroy(gameObject);
-        }
+       Invoke("Move", 80f); // Move 메서드를 주기적으로 호출
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -31,6 +26,15 @@ public class DreamEnergy : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerController.instance.AddDreamEnergy(); // 코인 X
+            Destroy(gameObject);
+        }
+    }
+    void Move()
+    {
+        transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+
+        if (transform.position.x <= destroyX)
+        {
             Destroy(gameObject);
         }
     }
