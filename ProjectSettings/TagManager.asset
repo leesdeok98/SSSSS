@@ -12,6 +12,7 @@ TagManager:
   - DreamEnergy
   - RunTrigger
   - Stop
+  - Chapter
   layers:
   - Default
   - TransparentFX
