@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;   
 
 public class ButtonManager : MonoBehaviour
 {
     //[SerializeField] private string nextSceneName = "ImageBoard"; // 유연하게 다음 씬 이름 설정
     [SerializeField] private Button startButton; // 시작 버튼 연결
+    [SerializeField] private AudioManager audioManager; // 오디오 매니저 연결
 
     public AudioClip MainMusic; // 메인 음악 클립
     public AudioClip Chapter1; // 챕터 1 음악 클립
@@ -23,7 +25,15 @@ public class ButtonManager : MonoBehaviour
         }
         startButton.onClick.AddListener(OnStartButtonClick); // 버튼 클릭 이벤트 연결
 
-        AudioManager.instance.PlayBGM(0); // 메인 타이틀 음악 재생
+        if (audioManager == null)
+        {
+            audioManager = FindObjectOfType<AudioManager>(); // AudioManager 찾기
+        }
+
+        if (audioManager != null)
+        {
+            audioManager.PlayBGM(0); // BGM 재생 (메인 타이틀 음악)
+        }
     }
     public void OnStartButtonClick()
     {
@@ -34,6 +44,5 @@ public class ButtonManager : MonoBehaviour
     public void LoadNextScene()
     {
         SceneManager.LoadScene("ImageBoard"); // 변수로 설정된 씬 로드
-        AudioManager.instance.PlayBGM(0);
     }
 }

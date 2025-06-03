@@ -14,6 +14,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioMixerGroup BGMMixerGroup;
     [SerializeField] AudioMixerGroup SFXMixerGroup;
 
+    public AudioClip MainMusic; // ∏ﬁ¿Œ ≈∏¿Ã∆≤ ¿Ωæ«    
+    public AudioClip Chapter1; // √©≈Õ 1 ¿Ωæ«
+    public AudioClip Chapter2; // √©≈Õ 2 ¿Ωæ«
+    public AudioClip Chapter3; // √©≈Õ 3 ¿Ωæ«
+
     [Header("#BGM)")]
     public AudioClip[] BGMClips;
     public float BGMVoulme;
@@ -31,7 +36,7 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject); 

@@ -17866,7 +17866,7 @@ MonoBehaviour:
   BGMVoulme: 0.5
   SFXClips: []
   SFXVolume: 0.5
-  channels: 16
+  channels: 15
 --- !u!1 &1578606468 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7504389528908389390, guid: 438effe0cb642694482b4c4c8dd6668d, type: 3}
