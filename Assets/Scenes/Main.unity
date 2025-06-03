@@ -166,8 +166,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1c01ab216d04f5478a7cd62eee544a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Main2
   startButton: {fileID: 1973069195}
+  MainMusic: {fileID: 8300000, guid: c8100f89ee20f8041af14a326be87c31, type: 3}
+  Chapter1: {fileID: 0}
+  Chapter2: {fileID: 8300000, guid: 8d6e82abae3750748af554478856f2ef, type: 3}
+  Chapter3: {fileID: 0}
 --- !u!1 &887410049
 GameObject:
   m_ObjectHideFlags: 0
