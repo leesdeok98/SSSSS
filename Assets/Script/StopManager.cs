@@ -18,5 +18,6 @@ public class StopManager : MonoBehaviour
             Debug.Log("플레이어와 충돌! 이동 방향 반전");
         }
     }
+    
 
 }

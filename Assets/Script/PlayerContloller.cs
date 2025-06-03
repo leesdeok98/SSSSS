@@ -67,13 +67,30 @@ public class PlayerController : MonoBehaviour
         RunnCol.enabled = true;
     }
 
-    private void Start()
+    void Start()
     {
         currentLives = maxLives;
         UIManager.instance.UpdateLivesUI(currentLives);
-        UIManager.instance.UpdateCoinUI(0,0);
+        UIManager.instance.UpdateCoinUI(0, 0);
         SetGroundTrue();
         shieldObject.SetActive(false);
+
+        // 시작 시 배경 방향도 확실히 맞춰주기
+        SetBackgroundDirectionAccordingToPlayer();
+    }
+    void SetBackgroundDirectionAccordingToPlayer()
+    {
+        int scrollerDir = (currentDirection == Direction.Right) ? 1 : -1;
+
+        foreach (var scroller in FindObjectsOfType<Scorller>())
+        {
+            scroller.SetDirection(scrollerDir);
+        }
+
+        if (BackgroundScrolling.Instance != null)
+        {
+            BackgroundScrolling.Instance.SetDirection(scrollerDir);
+        }
     }
 
     private void Update()
@@ -84,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(playerdie) return;
+            if (playerdie) return;
             Invoke("TryJump", 0.08f);
         }
 
@@ -92,7 +109,10 @@ public class PlayerController : MonoBehaviour
         {
             ActivateShield();
         }
+       
     }
+
+    
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -107,13 +127,13 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        // 테스트용 RunTrigger 작동 여부 확인
         if (collider.gameObject.CompareTag("RunTrigger"))
         {
-            Debug.Log("✅ 테스트용 RunTrigger 작동 확인!");
-            StartCoroutine(RunFixedDistance());
+            if (!isRunningToEdge)  // 중복 실행 방지
+            {
+                StartCoroutine(RunFixedDistance());
+            }
         }
-
         // Stop 트리거도 여기서 처리
         if (collider.CompareTag("Stop"))
         {
@@ -145,10 +165,11 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator RunFixedDistance()
     {
+        if (isRunningToEdge)
+            yield break; // 이미 실행 중이면 종료
+
         isRunningToEdge = true;
         PlayerAnimator.SetInteger("State", 0);
-
-
 
         float startX = transform.position.x;
         float targetX = (currentDirection == Direction.Right) ? startX + runDistance : startX - runDistance;
@@ -169,36 +190,41 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         FlipDirection();
-        isRunningToEdge = false;
-        GetComponent<SpriteRenderer>().flipX = true;
 
+        isRunningToEdge = false;
+
+        // 디버그 추가
+        Debug.Log("RunFixedDistance 완료, 현재 방향: " + currentDirection);
+
+        // 필요 시 추가 조작
+        GetComponent<SpriteRenderer>().flipX = (currentDirection == Direction.Left);
     }
+
 
     void FlipDirection()
     {
-
         currentDirection = (currentDirection == Direction.Right) ? Direction.Left : Direction.Right;
         spr.flipX = (currentDirection == Direction.Left);
 
-
         int scrollerDir = (currentDirection == Direction.Right) ? 1 : -1;
+
         foreach (var scroller in FindObjectsOfType<Scorller>())
         {
             scroller.SetDirection(scrollerDir);
         }
 
-
         if (BackgroundScrolling.Instance != null)
         {
-            BackgroundScrolling.Instance.FlipDirection();
+            BackgroundScrolling.Instance.SetDirection(scrollerDir);
         }
     }
+
 
     public void TakeDamage()
     {
         if (isInvincible) return;
 
-        currentLives--;
+        //currentLives--;
         UIManager.instance.UpdateLivesUI(currentLives);
 
         if (currentLives <= 0)
@@ -278,7 +304,7 @@ public class PlayerController : MonoBehaviour
         else if (isJumping && jumpCount < jumpLevel)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0f);
-            rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * 38f, ForceMode2D.Impulse);
             PlayerAnimator.Play("Jump", 0, 0f);
             isJumping = false;
         }
@@ -312,7 +338,7 @@ public class PlayerController : MonoBehaviour
         if (isShieldActive || CoinCount < 2) return;
 
         CoinCount -= 2;
-        UIManager.instance.UpdateCoinUI(0,0);
+        UIManager.instance.UpdateCoinUI(0, 0);
 
         isShieldActive = true;
         StartCoroutine(ShieldRoutine());
@@ -335,7 +361,7 @@ public class PlayerController : MonoBehaviour
     public void AddDreamEnergy()
     {
         CoinCount++;
-        UIManager.instance.UpdateCoinUI(0,0);
+        UIManager.instance.UpdateCoinUI(0, 0);
 
         if (CoinCount >= 2 && !isShieldActive)
         {

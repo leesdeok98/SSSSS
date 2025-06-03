@@ -9,7 +9,7 @@ public class BackgroundScrolling : MonoBehaviour
 
     public float speed = 10;
     public SpriteRenderer[] backgrounds;
-     public static int globalDirection = 1; 
+    public static int globalDirection = 1;
 
     public static BackgroundScrolling Instance;
 
@@ -24,43 +24,44 @@ public class BackgroundScrolling : MonoBehaviour
             Destroy(gameObject);
     }
 
-void Update()
-{
-    for (int i = 0; i < backgrounds.Length; i++)
+    void Update()
     {
-        backgrounds[i].transform.position += Vector3.left * direction * Time.deltaTime * speed;
+        for (int i = 0; i < backgrounds.Length; i++)
+        {
+            backgrounds[i].transform.position += Vector3.left * direction * Time.deltaTime * speed;
 
-        if (direction == 1)
-        {
-            if (backgrounds[i].transform.position.x <= resentPosX)
+            if (direction == 1)
             {
-                Vector3 newPos = backgrounds[i].transform.position;
-                newPos.x = backgrounds[1 - i].transform.position.x + offset;
-                backgrounds[i].transform.position = newPos;
+                if (backgrounds[i].transform.position.x <= resentPosX)
+                {
+                    Vector3 newPos = backgrounds[i].transform.position;
+                    newPos.x = backgrounds[1 - i].transform.position.x + offset;
+                    backgrounds[i].transform.position = newPos;
+                }
             }
-        }
-        else if (direction == -1)
-        {
-            if (backgrounds[i].transform.position.x >= -resentPosX)
+            else if (direction == -1)
             {
-                Vector3 newPos = backgrounds[i].transform.position;
-                newPos.x = backgrounds[1 - i].transform.position.x - offset;
-                backgrounds[i].transform.position = newPos;
+                if (backgrounds[i].transform.position.x >= -resentPosX)
+                {
+                    Vector3 newPos = backgrounds[i].transform.position;
+                    newPos.x = backgrounds[1 - i].transform.position.x - offset;
+                    backgrounds[i].transform.position = newPos;
+                }
             }
         }
     }
-}
 
 
 
     public void FlipDirection()
     {
         direction = -direction;
+        globalDirection = direction;
     }
-        public void SetDirection(int newDirection)
+    public void SetDirection(int newDirection)
     {
         direction = newDirection;
         globalDirection = newDirection;
     }
-    
+
 }

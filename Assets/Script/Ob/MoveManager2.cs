@@ -1,27 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 public class MoveManager2 : MonoBehaviour
 {
-    private bool isMoving = false;
+    private Vector2 moveDirection;
+    public float speed = 10f;
+    public bool startFromRight = false;
+
+    private bool canMove = false;
 
     void Start()
     {
-        Invoke("StartMoving", 75f);
-    }
-
-    void Update()
-    {
-        if (isMoving)
-        {
-            transform.Translate(Vector2.right * SpeedManager.Instance.moveSpeed * Time.deltaTime);
-        }
+        moveDirection = startFromRight ? Vector2.left : Vector2.right;
+        Invoke("StartMoving", 75f);  // 75초 뒤 이동 시작
     }
 
     void StartMoving()
     {
-        isMoving = true;
+        canMove = true;
+    }
+
+    void Update()
+    {
+        if (canMove)
+        {
+            transform.Translate(moveDirection * speed * Time.deltaTime);
+        }
     }
 
     void OnBecameInvisible()
