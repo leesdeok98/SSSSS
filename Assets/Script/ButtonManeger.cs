@@ -43,6 +43,10 @@ public class ButtonManager : MonoBehaviour
 
     public void LoadNextScene()
     {
+        if (audioManager != null)
+        {
+            audioManager.PlayBGM(0); 
+        }
         SceneManager.LoadScene("ImageBoard"); // 변수로 설정된 씬 로드
     }
 }

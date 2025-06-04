@@ -32,8 +32,8 @@ public class AudioManager : MonoBehaviour
     AudioSource[] SFXPlayers;
     int channelIndex;
 
-    /* public enum SFX { SFX ¿Ã∏ß } */
-
+    public enum SFX { BA, BAp, BD, BL, Dead, DE, flash, Hit, Jump, LO, PB, Sliding, Thunder, Typing = 14 }
+            
     void Awake()
     {
         if (instance == null)
