@@ -16,10 +16,15 @@ public class ChapterManager : MonoBehaviour
     [Header(" 처음에 페이드인 할 오브젝트들")]
     [SerializeField] private SpriteRenderer[] fadeInObjeccts;
 
+    [Header("설명창")]
+    [SerializeField] private SpriteRenderer explainRender;
+    [SerializeField] private Sprite[] explainImage;
+
     [Header("페이드 효과")]
     [SerializeField] private float fadeDuration = 1f;
     [SerializeField] private float[] chapterDurations = { 10f, 5f, 7f };
     [SerializeField] private float[] itemrDurations = { 3f, 3f, 3f, 3f, 3f };
+    [SerializeField] private float[] explainDurations = { 7f, 7f };
 
 
     public void Start()
@@ -47,6 +52,8 @@ public class ChapterManager : MonoBehaviour
                 }
 
                 yield return StartCoroutine(Fade(chapterRenderer, 0f, 1f, fadeDuration));
+                yield return StartCoroutine(Fade(explainRender, 0f, 1f, fadeDuration));
+                yield return StartCoroutine(Fade(explainRender, 1f, 0f, fadeDuration));
 
                 yield return StartCoroutine(PlayItemLayers());
             }
