@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815e2de9d2a37324596c44e8673ac0ec, type: 3}
   m_Name: Scene4
   m_EditorClassIdentifier: 
-  storyImage: {fileID: 21300000, guid: 57f97b27755429a43930c887f80cb7b0, type: 3}
+  storyImage: {fileID: 21300000, guid: a066bfd8176d11b46a0a9323bbe04a18, type: 3}
   storyText: "\uC815\uB9D0 \uC798\uBD80\uD0C1\uB4DC\uB824\uC694 \uAC8C\uC784 \uC7AC\uBC0C\uAC8C
     \uD574\uC8FC\uC138\uC694"

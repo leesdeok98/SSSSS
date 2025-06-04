@@ -1,140 +1,141 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class StoryManager : MonoBehaviour
+public class storyManager : MonoBehaviour
 {
     [Header("이미지")]
-    [SerializeField] private Image image; //SerializeField : private를 public으로 만들어주는 거
+    [SerializeField] private Image image;
     [SerializeField] private TMP_Text text;
 
     [Header("스크립터블")]
-    [Space(10)] //위에 글이랑 아래 글 거리
-    [Tooltip(" 성덕이형 에바참치꽁치")]
+    [Space(10)]
+    [Tooltip("성덕이형 에바참치꽁치")]
     [SerializeField] private ImageChanger[] images;
+
     [Header("타이핑 효과 설정")]
     [SerializeField] private float typingSpeed = 0.05f;
 
-    private bool isFading = true;
-    private bool isTyping = false;
     private int currentImage = 0;
     private Coroutine typingCorutine;
 
+    private enum StoryStep
+    {
+        WaitForImage,
+        WaitForText,
+        TypingText,
+        TextComplete,
+        StoryEnd
+    }
 
+    private StoryStep currentStep = StoryStep.WaitForImage;
 
     private void Start()
     {
-        //초기 설정
-        isFading = true;
         text.text = "";
+
         if (images.Length > 0 && FadeEffect.Instance != null)
         {
-            //시작 시, 첫번째 이미지 로드
             image.sprite = images[0].storyImage;
-
-            // Fade In 효과로 시작
-            StartCoroutine(FadeEffect.Instance.Fade(1, 0));
+            StartCoroutine(FadeEffect.Instance.FadeIn());
+            currentStep = StoryStep.WaitForText;
         }
-
-
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (isFading)
+            switch (currentStep)
             {
-                //Space 첫 호출 시, 이미지 및 텍스트 설정 후 타이핑 시작
-                ShowNextImage();
+                case StoryStep.WaitForText:
+                    StartTyping();
+                    break;
 
-            }
-            else if (isTyping)
-            {
+                case StoryStep.TypingText:
+                    CompleteTyping();
+                    break;
 
-                // Space 두번째 호출 시, 이미 타이핑 중이면 타이핑 즉시 완료
-                CompIeteTyping();
-            }
-            else
-            {
-                // 타이핑 완료 후 Space 호출 시, 다음 이미지로 전환 준비
-                ShowNextImage();
+                case StoryStep.TextComplete:
+                    StartCoroutine(FadeOutToNextImage());
+                    break;
+
+                case StoryStep.WaitForImage:
+                    // 자동 호출되므로 사용자 입력 없음
+                    break;
+
+                case StoryStep.StoryEnd:
+                    // 끝났으므로 아무 동작 없음
+                    break;
             }
         }
     }
+
     private void ShowNextImage()
     {
-        //이미지 배열 범위를 벗어나지 않도록
-        if (currentImage >= images.Length)
-        {
-            Debug.Log("모든 이미지가 표시되었습니다, 다음 씬으로 전환합니다");
-            if (FadeEffect.Instance != null)
-            {
-                StartCoroutine(FadeOutAndLoadScene("GameView"));
-            }
+        image.sprite = images[currentImage].storyImage;
+        text.text = "";
 
-            return;
-        }
         if (FadeEffect.Instance != null)
         {
-            StartCoroutine(FadeEffect.Instance.Fade(1, 0));
-        }
-        else
-        {
-
+            StartCoroutine(FadeEffect.Instance.FadeIn());
         }
 
-        // 이미지 설정
-        image.sprite = images[currentImage].storyImage;
+        currentStep = StoryStep.WaitForText;
+    }
 
-        // 기존 텍스트 초기화 후 타이핑 시작
-        text.text = "";
+    private void StartTyping()
+    {
         typingCorutine = StartCoroutine(TypeText(images[currentImage].storyText));
-
-        //상태 변경
-        isFading = false;
-        isTyping = true;
-
-        //다음 이미지 준비
-        currentImage++;
+        currentStep = StoryStep.TypingText;
     }
 
     private IEnumerator TypeText(string storyText)
     {
-        // 타이핑 효과 적용
         for (int i = 0; i <= storyText.Length; i++)
         {
             text.text = storyText.Substring(0, i);
             yield return new WaitForSeconds(typingSpeed);
         }
 
-        // 타이핑 완료
-        isTyping = false;
+        currentStep = StoryStep.TextComplete;
     }
-    private void CompIeteTyping()
+
+    private void CompleteTyping()
     {
         if (typingCorutine != null)
-        {
-            StopCoroutine(typingCorutine); //타이핑 코루틴 중지
+            StopCoroutine(typingCorutine);
 
-        }
-        // 전체 대사 즉시 표시
-        if (currentImage > 0 && currentImage <= images.Length)
+        text.text = images[currentImage].storyText;
+        currentStep = StoryStep.TextComplete;
+    }
+
+    private IEnumerator FadeOutToNextImage()
+    {
+        if (FadeEffect.Instance != null)
         {
-            text.text = images[currentImage - 1].storyText;
+            yield return StartCoroutine(FadeEffect.Instance.FadeOut());
         }
-        //타이핑 상태 변경
-        isTyping = false;
+
+        currentImage++;
+
+        if (currentImage >= images.Length)
+        {
+            currentStep = StoryStep.StoryEnd;
+            StartCoroutine(FadeOutAndLoadScene("GameView"));
+        }
+        else
+        {
+            ShowNextImage();
+        }
     }
 
     private IEnumerator FadeOutAndLoadScene(string sceneName)
     {
-        // FadeEffect에서 Fade Out 효과 불러오기
-        yield return StartCoroutine(FadeEffect.Instance.Fade(0, 1));
-        // Pade Out 완료 후 씬 전환
-        SceneManager.LoadScene("GameView");
+        // 이미 페이드아웃된 상태라고 가정
+        yield return new WaitForSeconds(0.5f); // 짧은 텀
+        SceneManager.LoadScene(sceneName);
     }
-
 }
