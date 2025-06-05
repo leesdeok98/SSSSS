@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class ButtonManager2 : MonoBehaviour
 {
+    public Slider SFXSlider;
+
     [SerializeField] private GameObject pausePanel;
 
     [SerializeField] private Button titleButton;
