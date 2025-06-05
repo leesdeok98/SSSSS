@@ -63,7 +63,6 @@ public class SoundSet : MonoBehaviour
 
     public void QuitToMain()
     {
-        
         Time.timeScale = 1f;
         SceneManager.LoadScene("Main");
     }

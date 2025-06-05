@@ -167,11 +167,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startButton: {fileID: 1973069195}
-  audioManager: {fileID: 810120500}
+  audioManager: {fileID: 810120502}
   MainMusic: {fileID: 8300000, guid: c8100f89ee20f8041af14a326be87c31, type: 3}
-  Chapter1: {fileID: 0}
+  Chapter1: {fileID: 8300000, guid: e4e40ce2335a12545bcac89ea2fce80e, type: 3}
   Chapter2: {fileID: 8300000, guid: 8d6e82abae3750748af554478856f2ef, type: 3}
-  Chapter3: {fileID: 0}
+  Chapter3: {fileID: 8300000, guid: 2e4da7dccda814a45868faf3f0e8b8f8, type: 3}
 --- !u!1 &810120499
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 810120501}
-  - component: {fileID: 810120500}
+  - component: {fileID: 810120502}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -189,26 +189,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &810120500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 810120499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f714a52c8f5d37145ab1267c005f1467, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24300002, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
-  BGMMixerGroup: {fileID: 5776629316768326605, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
-  SFXMixerGroup: {fileID: 4245874886709292142, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
-  BGMClips: []
-  BGMVoulme: 0
-  SFXClips: []
-  SFXVolume: 0
-  channels: 0
 --- !u!4 &810120501
 Transform:
   m_ObjectHideFlags: 0
@@ -224,6 +204,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &810120502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810120499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f714a52c8f5d37145ab1267c005f1467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24300002, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
+  BGMMixerGroup: {fileID: 5776629316768326605, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
+  SFXMixerGroup: {fileID: 4245874886709292142, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
+  MainMusic: {fileID: 8300000, guid: c8100f89ee20f8041af14a326be87c31, type: 3}
+  Chapter1: {fileID: 8300000, guid: e4e40ce2335a12545bcac89ea2fce80e, type: 3}
+  Chapter2: {fileID: 8300000, guid: 8d6e82abae3750748af554478856f2ef, type: 3}
+  Chapter3: {fileID: 8300000, guid: 2e4da7dccda814a45868faf3f0e8b8f8, type: 3}
+  BGMClips: []
+  BGMVoulme: 0
+  SFXClips: []
+  SFXVolume: 0
+  channels: 0
 --- !u!1 &887410049
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +312,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1419192193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1419192194}
+  - component: {fileID: 1419192195}
+  m_Layer: 0
+  m_Name: MainBGM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1419192194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419192193}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1419192195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419192193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1866682652c79849844cb02f4d3274d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1771367249
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,3 +760,4 @@ SceneRoots:
   - {fileID: 1791218700}
   - {fileID: 350965991}
   - {fileID: 810120501}
+  - {fileID: 1419192194}

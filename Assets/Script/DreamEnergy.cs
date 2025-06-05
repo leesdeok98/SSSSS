@@ -6,7 +6,7 @@ public class DreamEnergy : MonoBehaviour
 {
     public static DreamEnergy instance;
 
-    public float moveSpeed = 10f;        
+    //public float moveSpeed = 10f;        
     private float destroyX = -15f;      
 
     private void Awake()
@@ -17,7 +17,7 @@ public class DreamEnergy : MonoBehaviour
 
     void Update()
     {
-       Invoke("Move", 80f); // Move 메서드를 주기적으로 호출
+       Invoke("Move", 1f); // Move 메서드를 주기적으로 호출
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -26,16 +26,17 @@ public class DreamEnergy : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerController.instance.AddDreamEnergy(); // 코인 X
+            AudioManager.instance.PlaySFX(AudioManager.SFX.DE); //  SFX 재생
             Destroy(gameObject);
         }
     }
-    void Move()
-    {
-        transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+    //void Move()
+    //{
+    //    transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
 
-        if (transform.position.x <= destroyX)
-        {
-            Destroy(gameObject);
-        }
-    }
+    //    if (transform.position.x <= destroyX)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 }

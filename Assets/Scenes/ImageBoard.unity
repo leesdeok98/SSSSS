@@ -544,6 +544,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1611292462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1611292464}
+  - component: {fileID: 1611292463}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1611292463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611292462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f714a52c8f5d37145ab1267c005f1467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24300002, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
+  BGMMixerGroup: {fileID: 5776629316768326605, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
+  SFXMixerGroup: {fileID: 4245874886709292142, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
+  MainMusic: {fileID: 8300000, guid: c8100f89ee20f8041af14a326be87c31, type: 3}
+  Chapter1: {fileID: 8300000, guid: e4e40ce2335a12545bcac89ea2fce80e, type: 3}
+  Chapter2: {fileID: 8300000, guid: 8d6e82abae3750748af554478856f2ef, type: 3}
+  Chapter3: {fileID: 8300000, guid: 2e4da7dccda814a45868faf3f0e8b8f8, type: 3}
+  BGMClips: []
+  BGMVoulme: 0
+  SFXClips: []
+  SFXVolume: 0
+  channels: 0
+--- !u!4 &1611292464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611292462}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1809813647
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,3 +802,4 @@ SceneRoots:
   - {fileID: 1866299726}
   - {fileID: 1550627824}
   - {fileID: 921427737}
+  - {fileID: 1611292464}

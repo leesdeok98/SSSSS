@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
 
+    [SerializeField] private GameObject gameOverPanel;
+
     [Header("Shield")]
     public GameObject shieldObject;
     public float shieldDuration = 2f;
@@ -69,6 +71,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        gameOverPanel.SetActive(false);
         currentLives = maxLives;
         UIManager.instance.UpdateLivesUI(currentLives);
         UIManager.instance.UpdateCoinUI(0, 0);
@@ -99,7 +102,7 @@ public class PlayerController : MonoBehaviour
 
         Slide();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             if (playerdie) return;
             Invoke("TryJump", 0.08f);
@@ -224,7 +227,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isInvincible) return;
 
-        //currentLives--;
+        //currentLives--;   //데미지 까이는 코드 실행
         UIManager.instance.UpdateLivesUI(currentLives);
 
         if (currentLives <= 0)
@@ -287,6 +290,7 @@ public class PlayerController : MonoBehaviour
         {
             stopManager.speed = 0f;
         }
+        Invoke("Gameover", 2f);
     }
 
     void TryJump()
@@ -314,7 +318,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isHurt || isControlLocked) return; // ✅ 잠금 확인 추가
 
-        if (Input.GetKey(KeyCode.C) && isGround)
+        if (Input.GetKey(KeyCode.S) && isGround)
         {
             PlayerAnimator.SetInteger("State", 2);
             SlcCol.enabled = true;
@@ -374,5 +378,9 @@ public class PlayerController : MonoBehaviour
         isControlLocked = true;
         yield return new WaitForSeconds(seconds);
         isControlLocked = false;
+    }
+    void Gameover()
+    {
+        gameOverPanel.SetActive(true);
     }
 }

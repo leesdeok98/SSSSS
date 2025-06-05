@@ -124,7 +124,7 @@ public class storyManager : MonoBehaviour
         if (currentImage >= images.Length)
         {
             currentStep = StoryStep.StoryEnd;
-            StartCoroutine(FadeOutAndLoadScene("GameView"));
+            StartCoroutine(FadeOutAndLoadScene("NanEdo"));
         }
         else
         {

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
+    public static AudioManager instance { get; private set; }
 
     [SerializeField] AudioMixerGroup audioMixer;
     [SerializeField] AudioMixerGroup BGMMixerGroup;
@@ -31,15 +31,16 @@ public class AudioManager : MonoBehaviour
     public int channels;
     AudioSource[] SFXPlayers;
     int channelIndex;
+    private Sound[] sounds;
 
     public enum SFX { BA, BAp, BD, BL, Dead, DE, flash, Hit, Jump, LO, PB, Sliding, Thunder, Typing = 14 }
-            
+
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); 
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -78,10 +79,10 @@ public class AudioManager : MonoBehaviour
             BGMPlayer.Stop();
         }
     }
-    
+
     public void PauseBGM()
     {
-        if (BGMPlayer != null &&  BGMPlayer.isPlaying)
+        if (BGMPlayer != null && BGMPlayer.isPlaying)
         {
             BGMPlayer.Pause(); // 일시정지
         }
@@ -92,7 +93,7 @@ public class AudioManager : MonoBehaviour
         if (BGMPlayer != null)
         {
             BGMPlayer.UnPause(); // 이어서 재생
-        }    
+        }
     }
     void Start()
     {
@@ -126,7 +127,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    /*public void PlaySFX(SFX SFX)
+    public void PlaySFX(SFX SFX)
     {
         for (int index = 0; index < SFXPlayers.Length; index++)
         {
@@ -141,5 +142,6 @@ public class AudioManager : MonoBehaviour
             break;
 
 
-        }*/
+        }
+    }
 }

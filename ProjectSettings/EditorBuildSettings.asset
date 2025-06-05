@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ImageBoard.unity
     guid: 54626424723888749892357bdcc4e977
   - enabled: 1
+    path: Assets/Scenes/NanEdo.unity
+    guid: fecf55fe235e3024aa535f3e735abba4
+  - enabled: 1
     path: Assets/Scenes/GameView.unity
     guid: 8843ad8faaa066e4cb67a1c0f5c42f9e
-  - enabled: 1
-    path: Assets/Scenes/GameView2.unity
-    guid: 33a5a666338b18441b81886fad41717e
   m_configObjects: {}
