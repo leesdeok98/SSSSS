@@ -13,11 +13,6 @@ public class PlayerMoveing : MonoBehaviour
     private float invincibleTime = 1.5f;
     private bool isHurt;
 
-    [Header("Shield")]
-    public GameObject shieldObject;
-    public float shieldDuration = 2f;
-    public bool isShieldActive = false;
-
     private int coinCount = 0;
 
     [Header("Movement")]
@@ -52,7 +47,6 @@ public class PlayerMoveing : MonoBehaviour
     {
         currentLives = maxLives;
         UIManager.instance.UpdateLivesUI(currentLives);
-        //UIManager.instance.UpdateDreamEnergyUI(coinCount);
         SetGroundTrue();
     }
 
@@ -67,10 +61,7 @@ public class PlayerMoveing : MonoBehaviour
             Invoke("TryJump", 0.1f);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            ActivateShield();
-        }
+        // ½¯µå °ü·Ã ÄÚµå Á¦°ÅµÊ
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -81,22 +72,6 @@ public class PlayerMoveing : MonoBehaviour
             PlayerAnimator.SetInteger("State", 0);
             isJumping = false;
             jumpCount = 0;
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.CompareTag("Enemy") || collider.CompareTag("Lightning"))
-        {
-            if (isShieldActive)
-            {
-                Destroy(collider.gameObject);
-            }
-            else if (!isHurt)
-            {
-                TakeDamage();
-                Destroy(collider.gameObject);
-            }
         }
     }
 
@@ -188,25 +163,6 @@ public class PlayerMoveing : MonoBehaviour
         isGround = true;
     }
 
-    public void ActivateShield()
-    {
-        if (isShieldActive || coinCount < 1) return;
-
-        coinCount--;
-        //UIManager.instance.UpdateDreamEnergyUI(coinCount);
-
-        isShieldActive = true;
-        StartCoroutine(ShieldRoutine());
-    }
-
-    private IEnumerator ShieldRoutine()
-    {
-        shieldObject.SetActive(true);
-        yield return new WaitForSeconds(shieldDuration);
-        shieldObject.SetActive(false);
-        isShieldActive = false;
-    }
-
     public void RestoreFullHP()
     {
         currentLives = maxLives;
@@ -216,6 +172,6 @@ public class PlayerMoveing : MonoBehaviour
     public void AddCoin()
     {
         coinCount++;
-        //UIManager.instance.UpdateDreamEnergyUI(coinCount);
+        // UIManager.instance.UpdateDreamEnergyUI(coinCount);
     }
 }

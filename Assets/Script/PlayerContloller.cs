@@ -243,7 +243,7 @@ public class PlayerController : MonoBehaviour
 
 
     public void TakeDamage()
-    { 
+    {
         if (isInvincible) return;
 
         currentLives--;   //데미지 까이는 코드 실행

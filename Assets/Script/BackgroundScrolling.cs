@@ -5,7 +5,7 @@ using UnityEngine;
 public class BackgroundScrolling : MonoBehaviour
 {
     private float offset = 24f;
-    private float resentPosX = -23.5f;
+    private float resentPosX = -22.5f;
 
     public float speed = 10;
     public SpriteRenderer[] backgrounds;

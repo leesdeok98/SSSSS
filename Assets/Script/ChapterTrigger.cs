@@ -39,6 +39,7 @@ public class ChapterTrigger : MonoBehaviour
                 manager.TryChangeChapter();
                 Invoke("ChangeBool", 10.0f);
             }
+            
         }
     }
 

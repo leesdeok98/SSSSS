@@ -42,6 +42,7 @@ public class ChapterManager : MonoBehaviour
         StartCoroutine(AudioManager.instance.MusicFadeout());
         yield return StartCoroutine(Fade(chapterRenderer, 1f, 0f, fadeDuration));
 
+        AudioManager.instance.PlayBGM(nextIndex + 1);
         chapterRenderer.sprite = chapterImages[nextIndex];
 
         StartCoroutine(AudioManager.instance.MusicFadein());
