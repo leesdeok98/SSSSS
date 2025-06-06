@@ -1,4 +1,4 @@
-using UnityEngine;
+/* using UnityEngine;
 
 public class ChapterTrigger : MonoBehaviour
 {
@@ -10,7 +10,25 @@ public class ChapterTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.LogWarning("Ãæµ¹ µÊ");
             ChapterManager.Instance.StartChapterTransition(fromChapterIndex, toChapterIndex);
+        }
+    }
+} */
+
+using UnityEngine;
+
+public class ChapterTrigger : MonoBehaviour
+{
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            ChapterManager manager = FindObjectOfType<ChapterManager>();
+            if (manager != null)
+            {
+                manager.TryChangeChapter();
+            }
         }
     }
 }

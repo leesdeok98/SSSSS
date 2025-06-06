@@ -22649,7 +22649,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1234915920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26429,34 +26429,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00167322a6cbadb41a17303652639cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObjectsToFade:
-  - {fileID: 654033126}
-  - {fileID: 72932244}
-  chapterSpriteRenderer: {fileID: 1815487354}
-  imageSpriteRenderer: {fileID: 1201465556}
-  chapterImages:
-  - {fileID: 21300000, guid: 0aec5a0bbf32f9745965d5a5306bd87d, type: 3}
-  - {fileID: 21300000, guid: 0b9af89e0b9b6fe40b9e55949ad0472b, type: 3}
-  - {fileID: 21300000, guid: 0b9af89e0b9b6fe40b9e55949ad0472b, type: 3}
-  - {fileID: 21300000, guid: 0b9af89e0b9b6fe40b9e55949ad0472b, type: 3}
-  - {fileID: 21300000, guid: 07396466d23035346b59d90b4de3a818, type: 3}
-  itemImages:
-  - {fileID: 21300000, guid: b8654010ad868c64c9b168a791c23a43, type: 3}
-  - {fileID: 21300000, guid: 1023714c550eaba4a8d9780d25b3993c, type: 3}
-  - {fileID: 21300000, guid: a9865ae2acb39414a8122940083e4ebf, type: 3}
-  - {fileID: 21300000, guid: 960e4c54b4af290488d502359ef3927e, type: 3}
-  - {fileID: 21300000, guid: a571977ed1b5e554ab42cc36c7d3ae68, type: 3}
+  chapterRenderers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   fadeDuration: 1
-  itemDurations:
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  controlHintSprite: {fileID: 2014848659}
-  bossHintText: {fileID: 1234915920}
-  bossHintContent: "\uC131\uB355\uC774\uD615 \uBCF4\uC2A4\uAC00 \uB4F1\uC7A5\uD55C\uB2E4"
-  hintDuration: 7
 --- !u!1 &1474788873
 GameObject:
   m_ObjectHideFlags: 0
@@ -35926,7 +35905,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: 0535c7a74bb8cca41bef898bf68cba2e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
