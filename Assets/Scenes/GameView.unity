@@ -1652,7 +1652,6 @@ GameObject:
   m_Component:
   - component: {fileID: 80353317}
   - component: {fileID: 80353316}
-  - component: {fileID: 80353318}
   - component: {fileID: 80353315}
   - component: {fileID: 80353314}
   - component: {fileID: 80353313}
@@ -1815,18 +1814,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1515321566}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &80353318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80353312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33769d6875da16a4eb871fb99374233c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &83068372
 GameObject:
   m_ObjectHideFlags: 0
@@ -26429,11 +26416,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chapterRenderer: {fileID: 1815487354}
   chapterImages:
-  - {fileID: 21300000, guid: 0aec5a0bbf32f9745965d5a5306bd87d, type: 3}
-  - {fileID: 21300000, guid: 0b9af89e0b9b6fe40b9e55949ad0472b, type: 3}
-  - {fileID: 21300000, guid: 0b9af89e0b9b6fe40b9e55949ad0472b, type: 3}
-  - {fileID: 21300000, guid: 0b9af89e0b9b6fe40b9e55949ad0472b, type: 3}
-  - {fileID: 21300000, guid: 07396466d23035346b59d90b4de3a818, type: 3}
+  - {fileID: 21300000, guid: 9d07cd7e3ab11e244bdb1030d6c98e62, type: 3}
+  - {fileID: 21300000, guid: eea74ced8aa0754479b58daf5a618836, type: 3}
+  - {fileID: 21300000, guid: eea74ced8aa0754479b58daf5a618836, type: 3}
+  - {fileID: 21300000, guid: eea74ced8aa0754479b58daf5a618836, type: 3}
+  - {fileID: 21300000, guid: c23ffcb4caeb6c444b0aba5cea0a4916, type: 3}
   fadeDuration: 2
 --- !u!1 &1474788873
 GameObject:
