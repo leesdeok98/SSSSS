@@ -39,6 +39,10 @@ public class PlayerController : MonoBehaviour
 
     private bool isControlLocked = false; // ✅ 입력 잠금 변수 추가
 
+    public GameObject Boss;
+    public string targetTag = "Chapter";
+
+
     private SpriteRenderer spr;
     Color halfA = new Color(1, 1, 1, 0.5f);
     Color fullA = new Color(1, 1, 1, 1);
@@ -112,10 +116,10 @@ public class PlayerController : MonoBehaviour
         {
             ActivateShield();
         }
-       
+
     }
 
-    
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -137,6 +141,21 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(RunFixedDistance());
             }
         }
+        if (collider.CompareTag(targetTag))
+        {
+            Invoke("ShowBoss", 2f); // 2초 뒤에 보스 등장
+        }
+        if (collider.CompareTag("Chapter"))
+        {
+            // LightOutEffect 스크립트 찾고 FlashLoop 실행
+            LightOutEffect effect = FindObjectOfType<LightOutEffect>();
+            if (effect != null)
+            {
+                effect.StartCoroutine("FlashLoop");
+            }
+        }
+
+
         // Stop 트리거도 여기서 처리
         if (collider.CompareTag("Stop"))
         {
@@ -382,5 +401,11 @@ public class PlayerController : MonoBehaviour
     void Gameover()
     {
         gameOverPanel.SetActive(true);
+    }
+
+    void ShowBoss()
+    {
+        if (Boss != null)
+            Boss.SetActive(true);
     }
 }
