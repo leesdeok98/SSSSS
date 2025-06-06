@@ -1827,8 +1827,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33769d6875da16a4eb871fb99374233c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fromChapterIndex: 1
-  toChapterIndex: 2
 --- !u!1 &83068372
 GameObject:
   m_ObjectHideFlags: 0
@@ -26429,13 +26427,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00167322a6cbadb41a17303652639cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chapterRenderers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  fadeDuration: 1
+  chapterRenderer: {fileID: 1815487354}
+  chapterImages:
+  - {fileID: 21300000, guid: 0aec5a0bbf32f9745965d5a5306bd87d, type: 3}
+  - {fileID: 21300000, guid: 0b9af89e0b9b6fe40b9e55949ad0472b, type: 3}
+  - {fileID: 21300000, guid: 0b9af89e0b9b6fe40b9e55949ad0472b, type: 3}
+  - {fileID: 21300000, guid: 0b9af89e0b9b6fe40b9e55949ad0472b, type: 3}
+  - {fileID: 21300000, guid: 07396466d23035346b59d90b4de3a818, type: 3}
+  fadeDuration: 2
 --- !u!1 &1474788873
 GameObject:
   m_ObjectHideFlags: 0
@@ -34770,8 +34769,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33769d6875da16a4eb871fb99374233c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fromChapterIndex: 0
-  toChapterIndex: 1
 --- !u!4 &1973255474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 328496320639601241, guid: 64e9f4da8ab7dd84889acf03440d6a99, type: 3}

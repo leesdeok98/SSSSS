@@ -30,7 +30,7 @@ public class ChapterManager : MonoBehaviour
         }
     }
 
-    private void TryChangeChapter()
+    public void TryChangeChapter()
     {
         if (currentChapterIndex < chapterImages.Length - 1)
         {
