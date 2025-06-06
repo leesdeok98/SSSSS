@@ -20,15 +20,31 @@ using UnityEngine;
 
 public class ChapterTrigger : MonoBehaviour
 {
+
+    private bool isChangeTime = false;
+
+    private void Start()
+    {
+        isChangeTime = false;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             ChapterManager manager = FindObjectOfType<ChapterManager>();
-            if (manager != null)
+            if (manager != null && isChangeTime == false)
             {
+                isChangeTime = true;
+                Debug.Log("sdkfjls");
                 manager.TryChangeChapter();
+                Invoke("ChangeBool", 10.0f);
             }
         }
+    }
+
+    public void ChangeBool()
+    {
+        isChangeTime = false;
+
     }
 }

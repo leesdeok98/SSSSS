@@ -22,14 +22,6 @@ public class ChapterManager : MonoBehaviour
         StartCoroutine(Fade(chapterRenderer, 0f, 1f, fadeDuration));
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("change"))
-        {
-            TryChangeChapter();
-        }
-    }
-
     public void TryChangeChapter()
     {
         if (currentChapterIndex < chapterImages.Length - 1)

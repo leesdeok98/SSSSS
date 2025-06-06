@@ -4981,10 +4981,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 289134014}
+  - component: {fileID: 289134022}
   - component: {fileID: 289134019}
   - component: {fileID: 289134020}
   - component: {fileID: 289134018}
-  - component: {fileID: 289134016}
   - component: {fileID: 289134015}
   m_Layer: 0
   m_Name: NextChapter3
@@ -5002,8 +5002,8 @@ Transform:
   m_GameObject: {fileID: 289134013}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 168.8, y: -2.1, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 1}
+  m_LocalPosition: {x: 168.8, y: -1.5016, z: 0}
+  m_LocalScale: {x: 50, y: 52.365887, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 838156677}
@@ -5023,7 +5023,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -5035,19 +5035,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &289134016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 289134013}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2b0fded904087d4ab6920de82f776b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
 --- !u!61 &289134018
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5157,6 +5144,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33769d6875da16a4eb871fb99374233c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &289134022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289134013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28249b6931e0a04488a219f802231208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
 --- !u!1001 &294163047
 PrefabInstance:
   m_ObjectHideFlags: 0
