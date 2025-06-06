@@ -13,6 +13,7 @@ TagManager:
   - RunTrigger
   - Stop
   - Chapter
+  - change
   layers:
   - Default
   - TransparentFX

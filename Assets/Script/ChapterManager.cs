@@ -24,7 +24,7 @@ public class ChapterManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Chapter"))
+        if (collision.CompareTag("change"))
         {
             TryChangeChapter();
         }
