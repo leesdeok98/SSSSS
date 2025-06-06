@@ -6,6 +6,7 @@ public class ChapterManager : MonoBehaviour
     [Header("Chapter")]
     [SerializeField] private SpriteRenderer chapterRenderer;
     [SerializeField] private Sprite[] chapterImages;
+    [SerializeField] AudioManager audioManager;
 
     [SerializeField] private float fadeDuration = 1f;
 
@@ -19,6 +20,9 @@ public class ChapterManager : MonoBehaviour
         chapterRenderer.gameObject.SetActive(true);
 
         // 챕터 1 페이드인
+        audioManager.BGMVoulme = 0f; // 초기 볼륨 설정
+        audioManager.PlayBGM(1); // 챕터 1 음악 재생
+        StartCoroutine(audioManager.MusicFadeout());
         StartCoroutine(Fade(chapterRenderer, 0f, 1f, fadeDuration));
     }
 
@@ -35,12 +39,15 @@ public class ChapterManager : MonoBehaviour
     private IEnumerator ChangeChapter(int nextIndex)
     {
         // 현재 챕터 페이드아웃
+        StartCoroutine(audioManager.MusicFadein());
         yield return StartCoroutine(Fade(chapterRenderer, 1f, 0f, fadeDuration));
-
+        
         // 다음 이미지로 교체
+        audioManager.PlayBGM(nextIndex + 1); 
         chapterRenderer.sprite = chapterImages[nextIndex];
 
         // 다음 챕터 페이드인
+        StartCoroutine(audioManager.MusicFadeout());
         yield return StartCoroutine(Fade(chapterRenderer, 0f, 1f, fadeDuration));
     }
 

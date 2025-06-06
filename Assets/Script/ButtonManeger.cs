@@ -9,7 +9,7 @@ public class ButtonManager : MonoBehaviour
 {
     //[SerializeField] private string nextSceneName = "ImageBoard"; // 유연하게 다음 씬 이름 설정
     [SerializeField] private Button startButton; // 시작 버튼 연결
-    [SerializeField] private AudioManager audioManager; // 오디오 매니저 연결
+    [SerializeField] AudioManager audioManager; // 오디오 매니저 연결
 
     public AudioClip MainMusic; // 메인 음악 클립
     public AudioClip Chapter1; // 챕터 1 음악 클립
@@ -32,11 +32,13 @@ public class ButtonManager : MonoBehaviour
 
         if (audioManager != null)
         {
-            audioManager.PlayBGM(0); // BGM 재생 (메인 타이틀 음악)
+            Debug.Log("AudioManager found: " + audioManager.name);
+            AudioManager.instance.PlayBGM(0); // BGM 재생 (메인 타이틀 음악)
         }
     }
     public void OnStartButtonClick()
     {
+        SoundManager.Instance.Play("PB");
         Debug.Log("Start button clicked");
         LoadNextScene(); // 씬 전환
     }
@@ -45,7 +47,7 @@ public class ButtonManager : MonoBehaviour
     {
         if (audioManager != null)
         {
-            audioManager.PlayBGM(0); 
+            AudioManager.instance.PauseBGM();
         }
         SceneManager.LoadScene("ImageBoard"); // 변수로 설정된 씬 로드
     }

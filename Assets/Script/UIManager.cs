@@ -46,6 +46,7 @@ public class UIManager : MonoBehaviour
             else
             {
                 heartImages[i].sprite = blackHeart;
+                SoundManager.Instance.Play("Hit");
             }
         }
     }

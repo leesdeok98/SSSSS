@@ -25,7 +25,7 @@ public class AudioManager : MonoBehaviour
     AudioSource BGMPlayer;
 
 
-    [Header("#SFX)")]
+    /* [Header("#SFX)")]
     public AudioClip[] SFXClips;
     public float SFXVolume;
     public int channels;
@@ -33,7 +33,7 @@ public class AudioManager : MonoBehaviour
     int channelIndex;
     private Sound[] sounds;
 
-    public enum SFX { BA, BAp, BD, BL, Dead, DE, flash, Hit, Jump, LO, PB, Sliding, Thunder, Typing = 14 }
+    public enum SFX { BA, BAp, BD, BL, Dead, DE, flash, Hit, Jump, LO, PB, Sliding, Thunder, Typing = 14 } */
 
     void Awake()
     {
@@ -56,6 +56,12 @@ public class AudioManager : MonoBehaviour
         BGMClips[3] = Resources.Load<AudioClip>("챕터3");
     }
 
+    private void Update()
+    {
+        BGMPlayer.volume = BGMVoulme; 
+
+    }
+
     public void PlayBGM(int Index)
     {
         if (Index < 0 || Index >= BGMClips.Length)
@@ -67,7 +73,8 @@ public class AudioManager : MonoBehaviour
         {
             return;
         }
-
+      
+        Debug.Log("BGM 재생: " + BGMClips[Index].name);
         BGMPlayer.clip = BGMClips[Index];
         BGMPlayer.Play();
     }
@@ -95,10 +102,7 @@ public class AudioManager : MonoBehaviour
             BGMPlayer.UnPause(); // 이어서 재생
         }
     }
-    void Start()
-    {
-        PlayBGM(0); // 초기 BGM 재생, 인덱스 0은 메인 타이틀 BGM 
-    }
+    
 
     void Init()
     {
@@ -114,7 +118,7 @@ public class AudioManager : MonoBehaviour
         BGMPlayer.outputAudioMixerGroup = BGMMixerGroup;
 
         // 효과음 플레이어 초기화
-        GameObject SFXObject = new GameObject("SFXPlayer");
+       /* GameObject SFXObject = new GameObject("SFXPlayer");
         Debug.Log("SFXPlayer 오브젝트가 생성되었습니다");
         SFXObject.transform.parent = transform;
         SFXPlayers = new AudioSource[channels];
@@ -142,6 +146,36 @@ public class AudioManager : MonoBehaviour
             break;
 
 
+        } */
+
+    }
+    public IEnumerator MusicFadein()
+    {
+        float duration = 0.5f;
+        float time = 0f;
+        float start = 0.5f;
+        float end = 0f;
+
+        while (time < duration)
+        {
+            BGMVoulme = Mathf.Lerp(start, end, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    public IEnumerator MusicFadeout()
+    {
+        float duration = 0.5f;
+        float time = 0f;
+        float start = 0f;
+        float end = 0.5f;
+
+        while (time < duration)
+        {
+            BGMVoulme = Mathf.Lerp(start, end, time / duration);
+            time += Time.deltaTime;
+            yield return null;
         }
     }
 }

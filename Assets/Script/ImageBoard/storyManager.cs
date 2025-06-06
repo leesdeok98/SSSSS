@@ -42,6 +42,8 @@ public class storyManager : MonoBehaviour
             StartCoroutine(FadeEffect.Instance.FadeIn());
             currentStep = StoryStep.WaitForText;
         }
+
+        AudioManager.instance.UnPauseBGM(); // 메인 타이틀 음악 재생
     }
 
     void Update()
@@ -52,6 +54,7 @@ public class storyManager : MonoBehaviour
             {
                 case StoryStep.WaitForText:
                     StartTyping();
+                    SoundManager.Instance.Play("Typing");
                     break;
 
                 case StoryStep.TypingText:
@@ -124,6 +127,7 @@ public class storyManager : MonoBehaviour
         if (currentImage >= images.Length)
         {
             currentStep = StoryStep.StoryEnd;
+            SoundManager.Instance.Stop("Typing");
             StartCoroutine(FadeOutAndLoadScene("NanEdo"));
         }
         else
@@ -136,6 +140,8 @@ public class storyManager : MonoBehaviour
     {
         // 이미 페이드아웃된 상태라고 가정
         yield return new WaitForSeconds(0.5f); // 짧은 텀
+        AudioManager.instance.StopBGM();
         SceneManager.LoadScene(sceneName);
+        
     }
 }

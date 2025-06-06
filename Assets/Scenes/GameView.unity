@@ -2248,7 +2248,7 @@ GameObject:
   - component: {fileID: 126079409}
   m_Layer: 0
   m_Name: t_33 (24)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4309,7 +4309,7 @@ GameObject:
   - component: {fileID: 233435175}
   m_Layer: 0
   m_Name: t_33 (22)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7609,7 +7609,7 @@ GameObject:
   - component: {fileID: 466791023}
   m_Layer: 0
   m_Name: t_33 (11)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7816,7 +7816,7 @@ GameObject:
   - component: {fileID: 476294790}
   m_Layer: 0
   m_Name: t_33 (23)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11110,7 +11110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f534ca255ce6a5c48b9d2b22d7cae82c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SFXSlider: {fileID: 0}
+  SFXSlider: {fileID: 21532699}
   pausePanel: {fileID: 1757253256}
   titleButton: {fileID: 1790518657}
   retryButton: {fileID: 1902782930}
@@ -12206,7 +12206,7 @@ GameObject:
   - component: {fileID: 646118807}
   m_Layer: 0
   m_Name: t_33 (20)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12735,7 +12735,7 @@ GameObject:
   - component: {fileID: 664035409}
   m_Layer: 0
   m_Name: t_0 (14)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18769,7 +18769,7 @@ GameObject:
   - component: {fileID: 973854462}
   m_Layer: 0
   m_Name: t_33 (25)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18953,7 +18953,7 @@ GameObject:
   - component: {fileID: 976151845}
   m_Layer: 0
   m_Name: t_0 (16)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27001,6 +27001,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9d07cd7e3ab11e244bdb1030d6c98e62, type: 3}
   - {fileID: 21300000, guid: eea74ced8aa0754479b58daf5a618836, type: 3}
   - {fileID: 21300000, guid: c23ffcb4caeb6c444b0aba5cea0a4916, type: 3}
+  audioManager: {fileID: 1577850231}
   fadeDuration: 2
 --- !u!1 &1474788873
 GameObject:
@@ -28981,24 +28982,6 @@ MonoBehaviour:
   Chapter3: {fileID: 8300000, guid: 2e4da7dccda814a45868faf3f0e8b8f8, type: 3}
   BGMClips: []
   BGMVoulme: 0.5
-  SFXClips:
-  - {fileID: 8300000, guid: f272b3808c33d2a40be30115e1305b55, type: 3}
-  - {fileID: 8300000, guid: e7cdd30292b35a44cb3e2a9a5f4741bd, type: 3}
-  - {fileID: 8300000, guid: ee1996b9f03193c4bbb3722c2e1dff9c, type: 3}
-  - {fileID: 8300000, guid: 0ae543d33d252f74b996df7f49e05e42, type: 3}
-  - {fileID: 8300000, guid: 2c1f12cfe69423f429bfa9a16e4692ba, type: 3}
-  - {fileID: 8300000, guid: 3be1c5acd2bab1947987b940a12527e7, type: 3}
-  - {fileID: 8300000, guid: 40390d90e78d2474fa87ca07f2704fe8, type: 3}
-  - {fileID: 8300000, guid: 82bf12ff2ae5b974bb8b5cb810fa2f14, type: 3}
-  - {fileID: 8300000, guid: 2aaffc1e00acb294f8b89ad5f3e18cd2, type: 3}
-  - {fileID: 8300000, guid: a58f21cd36b57564aafc25ec8f3c6d74, type: 3}
-  - {fileID: 8300000, guid: 34eafe4b49b206a44bb1316879243a58, type: 3}
-  - {fileID: 8300000, guid: a3b3c5d2b86857e49b460256d0346b5c, type: 3}
-  - {fileID: 8300000, guid: 029087e856bd5144b81fa6c9da74aee8, type: 3}
-  - {fileID: 8300000, guid: 551c4d53e5581104e8f7fa73f059fa78, type: 3}
-  - {fileID: 8300000, guid: dddda9dcc1879324488bc3f0e0c3f477, type: 3}
-  SFXVolume: 0.5
-  channels: 15
 --- !u!1 &1578606468 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7504389528908389390, guid: 438effe0cb642694482b4c4c8dd6668d, type: 3}
@@ -29805,7 +29788,7 @@ GameObject:
   - component: {fileID: 1626179169}
   m_Layer: 0
   m_Name: t_0 (15)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30643,7 +30626,7 @@ GameObject:
   - component: {fileID: 1707004994}
   m_Layer: 0
   m_Name: t_0 (13)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31030,7 +31013,7 @@ GameObject:
   - component: {fileID: 1714064868}
   m_Layer: 0
   m_Name: t_0 (8)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31219,7 +31202,7 @@ GameObject:
   - component: {fileID: 1720243137}
   m_Layer: 0
   m_Name: t_0 (17)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31437,7 +31420,7 @@ GameObject:
   - component: {fileID: 1731627126}
   m_Layer: 0
   m_Name: t_33 (21)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33694,11 +33677,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97bf866eadbd664dad9b88da93d1dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
+  SFXSlider: {fileID: 21532699}
+  SFXMixerGroup: {fileID: 4245874886709292142, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
   sounds:
   - name: PB
     clip: {fileID: 8300000, guid: 34eafe4b49b206a44bb1316879243a58, type: 3}
     volume: 0.5
-    loop: 0
+    source: {fileID: 0}
+  - name: BA
+    clip: {fileID: 8300000, guid: f272b3808c33d2a40be30115e1305b55, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+  - name: BAp
+    clip: {fileID: 8300000, guid: e7cdd30292b35a44cb3e2a9a5f4741bd, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+  - name: BD
+    clip: {fileID: 8300000, guid: ee1996b9f03193c4bbb3722c2e1dff9c, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+  - name: BL
+    clip: {fileID: 8300000, guid: 0ae543d33d252f74b996df7f49e05e42, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+  - name: DE
+    clip: {fileID: 8300000, guid: 3be1c5acd2bab1947987b940a12527e7, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+  - name: Dead
+    clip: {fileID: 8300000, guid: 2c1f12cfe69423f429bfa9a16e4692ba, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+  - name: flash
+    clip: {fileID: 8300000, guid: 40390d90e78d2474fa87ca07f2704fe8, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+  - name: Hit
+    clip: {fileID: 8300000, guid: 82bf12ff2ae5b974bb8b5cb810fa2f14, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+  - name: Jump
+    clip: {fileID: 8300000, guid: 2aaffc1e00acb294f8b89ad5f3e18cd2, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+  - name: LO
+    clip: {fileID: 8300000, guid: a58f21cd36b57564aafc25ec8f3c6d74, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+  - name: Sliding
+    clip: {fileID: 8300000, guid: a3b3c5d2b86857e49b460256d0346b5c, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+  - name: Thunder1
+    clip: {fileID: 8300000, guid: 029087e856bd5144b81fa6c9da74aee8, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+  - name: Thunder2
+    clip: {fileID: 8300000, guid: 551c4d53e5581104e8f7fa73f059fa78, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+  - name: Typing
+    clip: {fileID: 8300000, guid: dddda9dcc1879324488bc3f0e0c3f477, type: 3}
+    volume: 0.5
     source: {fileID: 0}
 --- !u!4 &1879279681
 Transform:

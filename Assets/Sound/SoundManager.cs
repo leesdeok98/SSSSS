@@ -1,95 +1,95 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
+
 
 public class SoundManager : MonoBehaviour
 {
-    public Slider masterVolumeSlider;  // 마스터 볼륨 슬라이더
-    public Slider bgmVolumeSlider;     // BGM 볼륨 슬라이더
-    public Slider sfxVolumeSlider;     // SFX 볼륨 슬라이더
+    // 싱글톤 패턴(중첩 안되게 막아줌)
+    public static SoundManager Instance { get; private set; }
 
-    private const string MasterVolumePrefKey = "MasterVolume";
-    private const string BgmVolumePrefKey = "BgmVolume";
-    private const string SfxVolumePrefKey = "SfxVolume";
+    public AudioMixer audioMixer;
+    public Slider SFXSlider;
 
-    public static object Instance { get; internal set; }
+    [SerializeField] AudioMixerGroup SFXMixerGroup;
 
-    // Start is called before the first frame update
-    void Start()
+    [System.Serializable]
+
+    public class Sound
     {
-        // PlayerPrefs에서 저장된 볼륨 값을 불러오기 (기본값은 0.5f)
-        float savedMasterVolume = PlayerPrefs.GetFloat(MasterVolumePrefKey, 0.5f);
-        float savedBgmVolume = PlayerPrefs.GetFloat(BgmVolumePrefKey, 0.5f);
-        float savedSfxVolume = PlayerPrefs.GetFloat(SfxVolumePrefKey, 0.5f);
+        [Header("#SFX)")]
+        public string name;
+        public AudioClip clip;
+        [Range(0f, 1f)]
+        public float volume;
 
-        // 슬라이더의 초기 값을 불러온 볼륨 값으로 설정
-        masterVolumeSlider.value = savedMasterVolume;
-        bgmVolumeSlider.value = savedBgmVolume;
-        sfxVolumeSlider.value = savedSfxVolume;
-
-        // 각 슬라이더 값이 변경될 때 호출될 이벤트 설정
-        masterVolumeSlider.onValueChanged.AddListener(OnMasterVolumeChanged);
-        bgmVolumeSlider.onValueChanged.AddListener(OnBgmVolumeChanged);
-        sfxVolumeSlider.onValueChanged.AddListener(OnSfxVolumeChanged);
-
-        // 초기 값으로 볼륨 적용
-        SetVolume(savedMasterVolume, savedBgmVolume, savedSfxVolume);
+        [HideInInspector]
+        public AudioSource source;
     }
 
-    // 마스터 볼륨 값이 변경되었을 때 호출되는 메소드
-    public void OnMasterVolumeChanged(float volume)
-    {
-        // 마스터 볼륨을 설정
-        SetVolume(volume, bgmVolumeSlider.value, sfxVolumeSlider.value);
+    [SerializeField] private Sound[] sounds;
 
-        // 변경된 볼륨 값을 PlayerPrefs에 저장
-        PlayerPrefs.SetFloat(MasterVolumePrefKey, volume);
-        PlayerPrefs.Save();
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        //  각 사운드에 대한 AudioSource 컴포넌트 생성
+        foreach (Sound s in sounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.volume = s.volume;
+            s.source.outputAudioMixerGroup = SFXMixerGroup;
+        }
     }
 
-    // BGM 볼륨 값이 변경되었을 때 호출되는 메소드
-    public void OnBgmVolumeChanged(float volume)
+    public void Play(string name)
     {
-        // BGM 볼륨을 설정
-        SetVolume(masterVolumeSlider.value, volume, sfxVolumeSlider.value);
-
-        // 변경된 볼륨 값을 PlayerPrefs에 저장
-        PlayerPrefs.SetFloat(BgmVolumePrefKey, volume);
-        PlayerPrefs.Save();
+        Sound s = System.Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            return;
+        }
+        s.source.Play();
     }
 
-    // SFX 볼륨 값이 변경되었을 때 호출되는 메소드
-    public void OnSfxVolumeChanged(float volume)
+    public void Pause(string name)
     {
-        // SFX 볼륨을 설정
-        SetVolume(masterVolumeSlider.value, bgmVolumeSlider.value, volume);
-
-        // 변경된 볼륨 값을 PlayerPrefs에 저장
-        PlayerPrefs.SetFloat(SfxVolumePrefKey, volume);
-        PlayerPrefs.Save();
+        Sound s = System.Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            return;
+        }
+        s.source.Pause();
     }
 
-    // 세 가지 볼륨을 적용하는 메소드
-    private void SetVolume(float masterVolume, float bgmVolume, float sfxVolume)
+    public void Stop(string name)
     {
-        // 마스터 볼륨 (AudioListener)
-        AudioListener.volume = masterVolume;
-
-        // BGM 볼륨 (BGM 오디오 소스)
-        AudioSource bgmSource = GameObject.Find("BGMSource").GetComponent<AudioSource>();
-        if (bgmSource != null)
-            bgmSource.volume = bgmVolume;
-
-        // SFX 볼륨 (SFX 오디오 소스)
-        AudioSource sfxSource = GameObject.Find("SFXSource").GetComponent<AudioSource>();
-        if (sfxSource != null)
-            sfxSource.volume = sfxVolume;
+        Sound s = System.Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            return;
+        }
+        s.source.Stop();
     }
 
-    public static implicit operator SoundManager(AudioManager v)
-    {
-        throw new NotImplementedException();
-    }
+    // 타 스크립트에서 소리를 재생하는 코드
+    // SoundManager.Instance.Play("사운드명");
+
+    // 타 스크립트에서 소리를 일시정지 하는 코드
+    // SoundManager.Instance.Pause("사운드명");
+
+    //Pause는 멈춘 그 자리에서 다시 시작
+    //stop으로 바꾸면 처음부터 다시 시작
 }

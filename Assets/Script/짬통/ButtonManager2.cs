@@ -68,18 +68,18 @@ public class ButtonManager2 : MonoBehaviour
 
     void OnTitleButtonClicked()
     {
-        SoundManager2.Instance.Play("PB");
+        SoundManager.Instance.Play("PB");
         LoadNextScene();
     }
 
     void OnRetryButtonClicked()
     {
-        SoundManager2.Instance.Play("PB");
+        SoundManager.Instance.Play("PB");
         LoadNextScene2();
     }
     void OnBackButtonClicked()
     {
-        SoundManager2.Instance.Play("PB");
+        SoundManager.Instance.Play("PB");
         pausePanel.SetActive(false);
     }
 

@@ -26,14 +26,11 @@ public class Nomal : MonoBehaviour
     public void OnStartButtonClick()
     {
         Debug.Log("Start button clicked");
+        SoundManager.Instance.Play("PB");
         LoadNextScene(); // 씬 전환
     }
     public void LoadNextScene()
-    {
-        //if (audioManager != null)
-        //{
-        //    audioManager.PlayBGM(0);
-        //}
+    { 
         SceneManager.LoadScene("GameView"); // 변수로 설정된 씬 로드
     }
 }

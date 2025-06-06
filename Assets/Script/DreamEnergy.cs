@@ -26,7 +26,7 @@ public class DreamEnergy : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerController.instance.AddDreamEnergy(); // 코인 X
-            AudioManager.instance.PlaySFX(AudioManager.SFX.DE); //  SFX 재생
+           // AudioManager.instance.PlaySFX(AudioManager.SFX.DE); //  SFX 재생
             Destroy(gameObject);
         }
     }

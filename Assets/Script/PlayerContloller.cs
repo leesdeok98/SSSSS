@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private bool isInvincible = false;
     private bool playerdie = false;
 
+    private bool isSliding = false;
     private bool isGround = false;
     private int jumpCount = 0;
     private bool isJumping = false;
@@ -105,18 +106,17 @@ public class PlayerController : MonoBehaviour
         if (isControlLocked) return; // ✅ 컨트롤 잠금 시 입력 무시
 
         Slide();
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.S))
         {
+            SoundManager.Instance.Play("Sliding");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SoundManager.Instance.Play("Jump");
             if (playerdie) return;
             Invoke("TryJump", 0.08f);
         }
-
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            ActivateShield();
-        }
-
     }
 
 
@@ -243,10 +243,10 @@ public class PlayerController : MonoBehaviour
 
 
     public void TakeDamage()
-    {
+    { 
         if (isInvincible) return;
 
-        //currentLives--;   //데미지 까이는 코드 실행
+        currentLives--;   //데미지 까이는 코드 실행
         UIManager.instance.UpdateLivesUI(currentLives);
 
         if (currentLives <= 0)
@@ -297,6 +297,7 @@ public class PlayerController : MonoBehaviour
 
     void Die()
     {
+        SoundManager.Instance.Play("Dead");
         playerdie = true;
         isControlLocked = true; // 🔧 이거 추가!
         Debug.Log("Game Over");
