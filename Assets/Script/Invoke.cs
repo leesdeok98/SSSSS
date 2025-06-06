@@ -8,7 +8,7 @@ public class Invoke : MonoBehaviour
 
     void Start()
     {
-        Invoke("StartMoving", 100f);  // 75초 뒤 이동 시작
+        Invoke("StartMoving", 110f);  // 75초 뒤 이동 시작
     }
 
     void StartMoving()

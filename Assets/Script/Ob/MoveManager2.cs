@@ -12,7 +12,7 @@ public class MoveManager2 : MonoBehaviour
     void Start()
     {
         moveDirection = startFromRight ? Vector2.left : Vector2.right;
-        Invoke("StartMoving", 75f);  // 75초 뒤 이동 시작
+        Invoke("StartMoving", 85f);  // 75초 뒤 이동 시작
     }
 
     void StartMoving()
