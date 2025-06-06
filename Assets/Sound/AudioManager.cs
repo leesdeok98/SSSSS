@@ -6,6 +6,15 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class BGMClipData
+{
+    public string name;
+    public AudioClip clip;
+    [Range(0f, 1f)]
+    public float volume = 0.5f;
+}
+
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance { get; private set; }
@@ -14,26 +23,15 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioMixerGroup BGMMixerGroup;
     [SerializeField] AudioMixerGroup SFXMixerGroup;
 
-    public AudioClip MainMusic; // 메인 타이틀 음악    
-    public AudioClip Chapter1; // 챕터 1 음악
-    public AudioClip Chapter2; // 챕터 2 음악
-    public AudioClip Chapter3; // 챕터 3 음악
+    [Header("BGM Settings")]
+    public BGMClipData[] BGMClips;
 
-    [Header("#BGM)")]
-    public AudioClip[] BGMClips;
-    public float BGMVoulme;
+    [Header("Master BGM Volume")]
+    [Range(0f, 1f)]
+    public float masterBGMVolume = 1f;
+
     AudioSource BGMPlayer;
-
-
-    /* [Header("#SFX)")]
-    public AudioClip[] SFXClips;
-    public float SFXVolume;
-    public int channels;
-    AudioSource[] SFXPlayers;
-    int channelIndex;
-    private Sound[] sounds;
-
-    public enum SFX { BA, BAp, BD, BL, Dead, DE, flash, Hit, Jump, LO, PB, Sliding, Thunder, Typing = 14 } */
+    private int currentBGMIndex = -1;
 
     void Awake()
     {
@@ -45,21 +43,47 @@ public class AudioManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
 
         Init();
-
-        BGMClips = new AudioClip[4];
-        BGMClips[0] = Resources.Load<AudioClip>("메인타이틀");
-        BGMClips[1] = Resources.Load<AudioClip>("챕터1");
-        BGMClips[2] = Resources.Load<AudioClip>("챕터2");
-        BGMClips[3] = Resources.Load<AudioClip>("챕터3");
+        LoadBGMClips();
     }
 
     private void Update()
     {
-        BGMPlayer.volume = BGMVoulme; 
+        if (currentBGMIndex >= 0 && currentBGMIndex < BGMClips.Length)
+        {
+            BGMPlayer.volume = BGMClips[currentBGMIndex].volume * masterBGMVolume;
+        }
+    }
 
+    void LoadBGMClips()
+    {
+        if (BGMClips == null || BGMClips.Length == 0)
+        {
+            BGMClips = new BGMClipData[4];
+
+            BGMClips[0] = new BGMClipData();
+            BGMClips[0].name = "메인 타이틀";
+            BGMClips[0].clip = Resources.Load<AudioClip>("메인타이틀");
+            BGMClips[0].volume = 0.5f;
+
+            BGMClips[1] = new BGMClipData();
+            BGMClips[1].name = "챕터 1";
+            BGMClips[1].clip = Resources.Load<AudioClip>("챕터1");
+            BGMClips[1].volume = 0.5f;
+
+            BGMClips[2] = new BGMClipData();
+            BGMClips[2].name = "챕터 2";
+            BGMClips[2].clip = Resources.Load<AudioClip>("챕터2");
+            BGMClips[2].volume = 0.5f;
+
+            BGMClips[3] = new BGMClipData();
+            BGMClips[3].name = "챕터 3";
+            BGMClips[3].clip = Resources.Load<AudioClip>("챕터3");
+            BGMClips[3].volume = 0.5f;
+        }
     }
 
     public void PlayBGM(int Index)
@@ -69,13 +93,23 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("BGM 인덱스가 범위를 벗어났습니다: " + Index);
             return;
         }
-        if (BGMPlayer.clip == BGMClips[Index] && BGMPlayer.isPlaying)
+
+        if (BGMClips[Index].clip == null)
+        {
+            Debug.LogError($"BGM 클립이 null입니다. 인덱스: {Index}");
+            return;
+        }
+
+        if (BGMPlayer.clip == BGMClips[Index].clip && BGMPlayer.isPlaying)
         {
             return;
         }
-      
-        Debug.Log("BGM 재생: " + BGMClips[Index].name);
-        BGMPlayer.clip = BGMClips[Index];
+
+        currentBGMIndex = Index;
+        Debug.Log($"BGM 재생: {BGMClips[Index].name} (볼륨: {BGMClips[Index].volume})");
+
+        BGMPlayer.clip = BGMClips[Index].clip;
+        BGMPlayer.volume = BGMClips[Index].volume * masterBGMVolume;
         BGMPlayer.Play();
     }
 
@@ -84,6 +118,7 @@ public class AudioManager : MonoBehaviour
         if (BGMPlayer.isPlaying)
         {
             BGMPlayer.Stop();
+            currentBGMIndex = -1;
         }
     }
 
@@ -91,7 +126,7 @@ public class AudioManager : MonoBehaviour
     {
         if (BGMPlayer != null && BGMPlayer.isPlaying)
         {
-            BGMPlayer.Pause(); // 일시정지
+            BGMPlayer.Pause();
         }
     }
 
@@ -99,83 +134,89 @@ public class AudioManager : MonoBehaviour
     {
         if (BGMPlayer != null)
         {
-            BGMPlayer.UnPause(); // 이어서 재생
+            BGMPlayer.UnPause();
         }
     }
-    
+
+    public void SetBGMVolume(int index, float volume)
+    {
+        if (index >= 0 && index < BGMClips.Length)
+        {
+            BGMClips[index].volume = Mathf.Clamp01(volume);
+
+            if (currentBGMIndex == index)
+            {
+                BGMPlayer.volume = BGMClips[index].volume * masterBGMVolume;
+            }
+        }
+    }
+
+    public void SetMasterBGMVolume(float volume)
+    {
+        masterBGMVolume = Mathf.Clamp01(volume);
+
+        if (currentBGMIndex >= 0 && currentBGMIndex < BGMClips.Length)
+        {
+            BGMPlayer.volume = BGMClips[currentBGMIndex].volume * masterBGMVolume;
+        }
+    }
+
+    public void ResetAllBGMVolumes()
+    {
+        for (int i = 0; i < BGMClips.Length; i++)
+        {
+            BGMClips[i].volume = 0.5f;
+        }
+        masterBGMVolume = 1f;
+    }
 
     void Init()
     {
-        // 배경음 플레이어 초기화
         GameObject BGMObject = new GameObject("BGMPlayer");
         Debug.Log("BGMPlayer 오브젝트가 생성되었습니다");
         BGMObject.transform.parent = transform;
         BGMPlayer = BGMObject.AddComponent<AudioSource>();
-        BGMPlayer.outputAudioMixerGroup = audioMixer;
-        BGMPlayer.loop = true;
-        BGMPlayer.volume = BGMVoulme;
-        BGMPlayer.playOnAwake = false;
         BGMPlayer.outputAudioMixerGroup = BGMMixerGroup;
-
-        // 효과음 플레이어 초기화
-       /* GameObject SFXObject = new GameObject("SFXPlayer");
-        Debug.Log("SFXPlayer 오브젝트가 생성되었습니다");
-        SFXObject.transform.parent = transform;
-        SFXPlayers = new AudioSource[channels];
-        for (int index = 0; index < SFXPlayers.Length; index++)
-        {
-            SFXPlayers[index] = SFXObject.AddComponent<AudioSource>();
-            SFXPlayers[index].outputAudioMixerGroup = audioMixer; // <-- 이 한 줄만 추가
-            SFXPlayers[index].playOnAwake = false;
-            SFXPlayers[index].volume = SFXVolume;
-        }
+        BGMPlayer.loop = true;
+        BGMPlayer.playOnAwake = false;
     }
 
-    public void PlaySFX(SFX SFX)
+    public IEnumerator MusicFadein(float targetVolume = -1f)
     {
-        for (int index = 0; index < SFXPlayers.Length; index++)
-        {
-            int loopIndex = (index + channelIndex) % SFXPlayers.Length;
+        if (currentBGMIndex < 0) yield break;
 
-            if (SFXPlayers[loopIndex].isPlaying)
-                continue;
-
-            channelIndex = loopIndex;
-            SFXPlayers[loopIndex].clip = SFXClips[(int)SFX];
-            SFXPlayers[loopIndex].Play();
-            break;
-
-
-        } */
-
-    }
-    public IEnumerator MusicFadein()
-    {
+        float target = targetVolume >= 0 ? targetVolume : BGMClips[currentBGMIndex].volume;
         float duration = 0.5f;
         float time = 0f;
-        float start = 0.5f;
-        float end = 0f;
+        float start = 0f;
 
         while (time < duration)
         {
-            BGMVoulme = Mathf.Lerp(start, end, time / duration);
+            float currentVolume = Mathf.Lerp(start, target, time / duration);
+            BGMPlayer.volume = currentVolume * masterBGMVolume;
             time += Time.deltaTime;
             yield return null;
         }
+
+        BGMPlayer.volume = target * masterBGMVolume;
     }
 
     public IEnumerator MusicFadeout()
     {
+        if (currentBGMIndex < 0) yield break;
+
         float duration = 0.5f;
         float time = 0f;
-        float start = 0f;
-        float end = 0.5f;
+        float start = BGMPlayer.volume;
+        float end = 0f;
 
         while (time < duration)
         {
-            BGMVoulme = Mathf.Lerp(start, end, time / duration);
+            BGMPlayer.volume = Mathf.Lerp(start, end, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
+
+        BGMPlayer.volume = 0f;
     }
 }
