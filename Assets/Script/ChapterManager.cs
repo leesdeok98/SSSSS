@@ -35,8 +35,6 @@ public class ChapterManager : MonoBehaviour
 
     public int CurrentChapterIndex { get; private set; } = -1;
 
-    private bool isTransitioning = false;
-
     private void Awake()
     {
         if (Instance == null)
@@ -47,12 +45,16 @@ public class ChapterManager : MonoBehaviour
 
     public void StartChapterTransition(int fromChapterIndex, int toChapterIndex)
     {
-        if (CurrentChapterIndex == toChapterIndex || isTransitioning)
+        if (CurrentChapterIndex == toChapterIndex)
             return;
 
-        isTransitioning = true;
-        StartCoroutine(PlayChapters(fromChapterIndex, toChapterIndex));
-        CurrentChapterIndex = toChapterIndex;
+        StartCoroutine(PlayChaptersWithUpdateIndex(fromChapterIndex, toChapterIndex));
+    }
+
+    private IEnumerator PlayChaptersWithUpdateIndex(int fromIndex, int toIndex)
+    {
+        yield return StartCoroutine(PlayChapters(fromIndex, toIndex));
+        CurrentChapterIndex = toIndex;
     }
 
     private IEnumerator PlayChapters(int fromIndex, int toIndex)
@@ -63,7 +65,7 @@ public class ChapterManager : MonoBehaviour
         chapterSpriteRenderer.gameObject.SetActive(true);
         yield return StartCoroutine(FadeSpriteRenderer(chapterSpriteRenderer, 0f, 1f, fadeDuration));
 
-        // 챕터 1 전용 연출
+        // 챕터 1 전용 연출 (인덱스 0)
         if (toIndex == 0)
         {
             // 아이템 레이어들 순차 재생
@@ -79,7 +81,7 @@ public class ChapterManager : MonoBehaviour
             yield return StartCoroutine(ShowHintSprite(controlHintSprite, hintDuration));
         }
 
-        // 챕터 5 전용 텍스트 힌트
+        // 챕터 5 전용 텍스트 힌트 (인덱스 4)
         if (toIndex == 4)
         {
             bossHintText.text = bossHintContent;
@@ -95,8 +97,6 @@ public class ChapterManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(FadeSpriteRenderer(chapterSpriteRenderer, 1f, 0f, fadeDuration));
         chapterSpriteRenderer.gameObject.SetActive(false);
-
-        isTransitioning = false;
     }
 
     private IEnumerator PlayItemLayers()
