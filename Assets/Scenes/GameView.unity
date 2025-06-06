@@ -33657,7 +33657,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1879279681}
-  - component: {fileID: 1879279680}
+  - component: {fileID: 1879279682}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -33665,7 +33665,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1879279680
+--- !u!4 &1879279681
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879279679}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1879279682
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -33674,7 +33689,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1879279679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c97bf866eadbd664dad9b88da93d1dfa, type: 3}
+  m_Script: {fileID: 11500000, guid: e45631e94efc6d14f9e29b71629ee100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
@@ -33741,21 +33756,6 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: dddda9dcc1879324488bc3f0e0c3f477, type: 3}
     volume: 0.5
     source: {fileID: 0}
---- !u!4 &1879279681
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1879279679}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1879664536
 PrefabInstance:
   m_ObjectHideFlags: 0

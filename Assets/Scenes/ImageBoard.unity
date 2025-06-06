@@ -206,7 +206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 516626740}
-  - component: {fileID: 516626739}
+  - component: {fileID: 516626741}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -214,26 +214,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &516626739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 516626738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c97bf866eadbd664dad9b88da93d1dfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
-  SFXSlider: {fileID: 0}
-  SFXMixerGroup: {fileID: 4245874886709292142, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
-  sounds:
-  - name: Typing
-    clip: {fileID: 8300000, guid: dddda9dcc1879324488bc3f0e0c3f477, type: 3}
-    volume: 0.5
-    source: {fileID: 0}
 --- !u!4 &516626740
 Transform:
   m_ObjectHideFlags: 0
@@ -249,6 +229,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &516626741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516626738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45631e94efc6d14f9e29b71629ee100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
+  SFXSlider: {fileID: 0}
+  SFXMixerGroup: {fileID: 4245874886709292142, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
+  sounds:
+  - name: Typing
+    clip: {fileID: 8300000, guid: dddda9dcc1879324488bc3f0e0c3f477, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
 --- !u!1 &541256268
 GameObject:
   m_ObjectHideFlags: 0
