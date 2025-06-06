@@ -35,6 +35,11 @@ public class ChapterManager : MonoBehaviour
 
     public int CurrentChapterIndex { get; private set; } = -1;
 
+    public void Start()
+    {
+        StartChapterTransition(-1, 0);
+    }
+
     private void Awake()
     {
         if (Instance == null)
