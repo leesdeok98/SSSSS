@@ -26,6 +26,10 @@ public class ChapterTrigger : MonoBehaviour
     private void Start()
     {
         isChangeTime = false;
+        GameManager.instance.ResetCoins();
+        GameManager.instance.SetRequiredCoins();
+        PlayerController.instance.RestoreFullHP();
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

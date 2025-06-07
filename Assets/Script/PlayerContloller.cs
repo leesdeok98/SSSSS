@@ -8,11 +8,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject gameOverPanel;
 
-    [Header("Shield")]
-    public GameObject shieldObject;
-    public float shieldDuration = 2f;
-    public bool isShieldActive = false;
-
     [Header("Movement")]
     public float JumpForce;
     public Rigidbody2D rb;
@@ -81,7 +76,6 @@ public class PlayerController : MonoBehaviour
         UIManager.instance.UpdateLivesUI(currentLives);
         UIManager.instance.UpdateCoinUI(0, 0);
         SetGroundTrue();
-        shieldObject.SetActive(false);
 
         // 시작 시 배경 방향도 확실히 맞춰주기
         SetBackgroundDirectionAccordingToPlayer();
@@ -170,13 +164,9 @@ public class PlayerController : MonoBehaviour
         }
 
         // 적 또는 번개 충돌 처리
-        if (collider.CompareTag("Enemy") || collider.CompareTag("Lightning"))
+        if (collider.CompareTag("Enemy"))
         {
-            if (isShieldActive)
-            {
-                Destroy(collider.gameObject);
-            }
-            else if (!isInvincible)
+            if (!isInvincible)
             {
                 TakeDamage();
                 Destroy(collider.gameObject);
@@ -313,6 +303,14 @@ public class PlayerController : MonoBehaviour
         Invoke("Gameover", 2f);
     }
 
+    public void ForceDie()
+    {
+        currentLives = 0;
+        UIManager.instance.UpdateLivesUI(0);
+        Die();
+    }
+
+
     void TryJump()
     {
         if (isHurt || isControlLocked) return; // ✅ 잠금 확인 추가
@@ -357,40 +355,10 @@ public class PlayerController : MonoBehaviour
         isGround = true;
     }
 
-    public void ActivateShield()
-    {
-        if (isShieldActive || CoinCount < 2) return;
-
-        CoinCount -= 2;
-        UIManager.instance.UpdateCoinUI(0, 0);
-
-        isShieldActive = true;
-        StartCoroutine(ShieldRoutine());
-    }
-
-    private IEnumerator ShieldRoutine()
-    {
-        shieldObject.SetActive(true);
-        yield return new WaitForSeconds(shieldDuration);
-        shieldObject.SetActive(false);
-        isShieldActive = false;
-    }
-
     public void RestoreFullHP()
     {
         currentLives = maxLives;
         UIManager.instance.UpdateLivesUI(currentLives);
-    }
-
-    public void AddDreamEnergy()
-    {
-        CoinCount++;
-        UIManager.instance.UpdateCoinUI(0, 0);
-
-        if (CoinCount >= 2 && !isShieldActive)
-        {
-            ActivateShield();
-        }
     }
 
     private IEnumerator LockControlsForSeconds(float seconds)

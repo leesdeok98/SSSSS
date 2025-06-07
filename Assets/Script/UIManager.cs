@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ public class UIManager : MonoBehaviour
     public Sprite redHeart;
     public Sprite blackHeart;
 
-    public Image coinIcon; 
+    public Image coinIcon;
     public TextMeshProUGUI coinText;
 
     private void Awake()
@@ -30,7 +31,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         UpdateLivesUI(heartImages.Length);
-        //HideCoinUI();
+        UpdateCoinUI(0, 0);
     }
 
     public void UpdateLivesUI(int lives)
@@ -46,26 +47,31 @@ public class UIManager : MonoBehaviour
             else
             {
                 heartImages[i].sprite = blackHeart;
-                SoundManager.Instance.Play("Hit");
             }
         }
     }
 
     public void UpdateCoinUI(int collected, int required)
     {
-        bool showCoinUI = required > 0;
-        coinIcon.gameObject.SetActive(showCoinUI);
-        coinText.gameObject.SetActive(showCoinUI);
+        bool show = required > 0;
+        coinIcon.gameObject.SetActive(show);
+        coinText.gameObject.SetActive(show);
 
-        if (showCoinUI)
-        {
+        if (show)
             coinText.text = $"{collected} / {required}";
-        }
     }
 
-    //public void HideCoinUI()
-    //{
-    //    coinIcon.gameObject.SetActive(false);
-    //    coinText.gameObject.SetActive(false);
-    //}
+    public void HideCoinUI()
+    {
+        coinIcon.gameObject.SetActive(false);
+        coinText.gameObject.SetActive(false);
+    }
+
+    public void HideLivesUI()
+    {
+        foreach (Image heart in heartImages)
+        {
+            heart.gameObject.SetActive(false);
+        }
+    }
 }

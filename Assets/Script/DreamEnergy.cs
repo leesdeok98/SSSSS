@@ -25,7 +25,7 @@ public class DreamEnergy : MonoBehaviour
         Debug.Log("Trigger 감지됨: " + other.name);
         if (other.CompareTag("Player"))
         {
-            PlayerController.instance.AddDreamEnergy(); // 코인 X
+            GameManager.instance.AddCoin();
            // AudioManager.instance.PlaySFX(AudioManager.SFX.DE); //  SFX 재생
             Destroy(gameObject);
         }

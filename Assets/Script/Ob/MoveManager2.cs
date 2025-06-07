@@ -24,7 +24,7 @@ public class MoveManager2 : MonoBehaviour
     {
         if (canMove)
         {
-            transform.Translate(moveDirection * speed * Time.deltaTime);
+            transform.Translate(moveDirection * SpeedManager.Instance.moveSpeed * Time.deltaTime);
         }
     }
 

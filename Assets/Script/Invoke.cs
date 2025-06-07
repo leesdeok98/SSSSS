@@ -20,7 +20,7 @@ public class Invoke : MonoBehaviour
     {
         if (canMove)
         {
-            transform.Translate(Vector2.left * speed * Time.deltaTime); // 항상 왼쪽으로 이동
+            transform.Translate(Vector2.left * SpeedManager.Instance.moveSpeed * Time.deltaTime); // 항상 왼쪽으로 이동
         }
     }
 
