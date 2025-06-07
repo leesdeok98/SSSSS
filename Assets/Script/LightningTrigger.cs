@@ -18,6 +18,10 @@ public class LightningTrigger : MonoBehaviour
                 Debug.LogWarning("GameManager or LightningManager missing");
                 return;
             }
+            if (Bosss.instance != null)
+            {
+                Bosss.instance.BossTakeDamege();
+            }
 
             bool hasEnoughCoins = GameManager.instance.HasEnoughCoins();
             int required = GameManager.instance.GetRequiredCoins();
