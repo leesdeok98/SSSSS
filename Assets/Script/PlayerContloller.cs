@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private int maxLives = 3;
     private int currentLives;
 
-    private float invincibleTime = 2f;
+    private float invincibleTime = 20f;
     private float hurtDuration = 0.3f;
 
     private bool isHurt = false;

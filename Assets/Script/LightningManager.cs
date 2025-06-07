@@ -9,11 +9,18 @@ public class LightningManager : MonoBehaviour
 
     public GameObject lightning1;
     public GameObject lightning2;
+    public GameObject Bosslightning;
 
     private void Awake()
     {
         if (instance == null) instance = this;
         else Destroy(gameObject);
+    }
+
+    void ActivateBossLightning()
+    {
+        if (Bosslightning != null)
+            Bosslightning.SetActive(true);
     }
 
     public void TriggerLightning(bool hasEnoughCoins)
@@ -22,6 +29,9 @@ public class LightningManager : MonoBehaviour
         {
             if (lightning2 != null)
                 lightning2.SetActive(true);
+
+            if (Bosslightning != null)
+                Invoke("ActivateBossLightning", 0.5f);
         }
         else
         {
