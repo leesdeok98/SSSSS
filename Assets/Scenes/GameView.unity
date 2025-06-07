@@ -5102,7 +5102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33769d6875da16a4eb871fb99374233c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextChapter: 2
+  nextChapter: 3
 --- !u!114 &289134022
 MonoBehaviour:
   m_ObjectHideFlags: 0
