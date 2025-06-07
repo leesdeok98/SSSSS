@@ -22,7 +22,7 @@ public class SoundManager : MonoBehaviour
         [Header("#SFX)")]
         public string name;
         public AudioClip clip;
-        [Range(0f, 1f)]
+        [Range(0f, 2f)]
         public float volume;
 
         [HideInInspector]

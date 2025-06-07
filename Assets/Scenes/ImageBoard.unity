@@ -247,7 +247,7 @@ MonoBehaviour:
   sounds:
   - name: Typing
     clip: {fileID: 8300000, guid: dddda9dcc1879324488bc3f0e0c3f477, type: 3}
-    volume: 0.5
+    volume: 2
     source: {fileID: 0}
 --- !u!1 &541256268
 GameObject:
@@ -628,12 +628,8 @@ MonoBehaviour:
   audioMixer: {fileID: 24300002, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
   BGMMixerGroup: {fileID: 5776629316768326605, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
   SFXMixerGroup: {fileID: 4245874886709292142, guid: 50d20cd68ef058d4d894f79c94b3e1e7, type: 2}
-  MainMusic: {fileID: 8300000, guid: c8100f89ee20f8041af14a326be87c31, type: 3}
-  Chapter1: {fileID: 8300000, guid: e4e40ce2335a12545bcac89ea2fce80e, type: 3}
-  Chapter2: {fileID: 8300000, guid: 8d6e82abae3750748af554478856f2ef, type: 3}
-  Chapter3: {fileID: 8300000, guid: 2e4da7dccda814a45868faf3f0e8b8f8, type: 3}
   BGMClips: []
-  BGMVoulme: 0
+  masterBGMVolume: 1
 --- !u!4 &1611292464
 Transform:
   m_ObjectHideFlags: 0

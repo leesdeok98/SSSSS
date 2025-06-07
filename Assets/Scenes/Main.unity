@@ -376,7 +376,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Dead
     clip: {fileID: 8300000, guid: 2c1f12cfe69423f429bfa9a16e4692ba, type: 3}
-    volume: 0.5
+    volume: 1
     source: {fileID: 0}
   - name: flash
     clip: {fileID: 8300000, guid: 40390d90e78d2474fa87ca07f2704fe8, type: 3}
@@ -384,11 +384,11 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Hit
     clip: {fileID: 8300000, guid: 82bf12ff2ae5b974bb8b5cb810fa2f14, type: 3}
-    volume: 0.5
+    volume: 1
     source: {fileID: 0}
   - name: Jump
     clip: {fileID: 8300000, guid: 2aaffc1e00acb294f8b89ad5f3e18cd2, type: 3}
-    volume: 0.5
+    volume: 2
     source: {fileID: 0}
   - name: LO
     clip: {fileID: 8300000, guid: a58f21cd36b57564aafc25ec8f3c6d74, type: 3}
@@ -408,7 +408,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Typing
     clip: {fileID: 8300000, guid: dddda9dcc1879324488bc3f0e0c3f477, type: 3}
-    volume: 0.5
+    volume: 2
     source: {fileID: 0}
 --- !u!4 &954704609
 Transform:
