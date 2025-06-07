@@ -12,14 +12,19 @@ public class PlayerController : MonoBehaviour
     public float JumpForce;
     public Rigidbody2D rb;
     public Animator PlayerAnimator;
-    public BoxCollider2D SlcCol;
-    public BoxCollider2D RunnCol;
+
+    public BoxCollider2D boxCol; // 🔄 단일 콜라이더
+
+    private Vector2 normalSize = new Vector2(0.4f, 1.7f);
+    private Vector2 normalOffset = new Vector2(0.1f, 0.8f);
+
+    private Vector2 slideSize = new Vector2(2.0f, 0.7f);   // ← 이미지 참고
+    private Vector2 slideOffset = new Vector2(0.0f, 0.4f);
 
     private int maxLives = 3;
     private int currentLives;
-    public int CoinCount = 0;
 
-    private float invincibleTime = 1.5f;
+    private float invincibleTime = 20f;
     private float hurtDuration = 0.3f;
 
     private bool isHurt = false;
@@ -32,12 +37,10 @@ public class PlayerController : MonoBehaviour
     private bool isJumping = false;
     public int jumpLevel = 2;
     private bool isPaused = false;
-
-    private bool isControlLocked = false; // ✅ 입력 잠금 변수 추가
+    private bool isControlLocked = false;
 
     public GameObject Boss;
     public string targetTag = "Chapter";
-
 
     private SpriteRenderer spr;
     Color halfA = new Color(1, 1, 1, 0.5f);
@@ -52,7 +55,6 @@ public class PlayerController : MonoBehaviour
     public enum Direction { Right, Left }
     public Direction currentDirection = Direction.Right;
 
-
     private Rigidbody2D rigid;
 
     private void Awake()
@@ -65,8 +67,9 @@ public class PlayerController : MonoBehaviour
         spr = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
 
-        SlcCol.enabled = false;
-        RunnCol.enabled = true;
+        boxCol = GetComponent<BoxCollider2D>();
+        boxCol.size = normalSize;
+        boxCol.offset = normalOffset;
     }
 
     void Start()
@@ -75,11 +78,11 @@ public class PlayerController : MonoBehaviour
         currentLives = maxLives;
         UIManager.instance.UpdateLivesUI(currentLives);
         UIManager.instance.UpdateCoinUI(0, 0);
-        SetGroundTrue();
+        isGround = true;
 
-        // 시작 시 배경 방향도 확실히 맞춰주기
         SetBackgroundDirectionAccordingToPlayer();
     }
+
     void SetBackgroundDirectionAccordingToPlayer()
     {
         int scrollerDir = (currentDirection == Direction.Right) ? 1 : -1;
@@ -97,9 +100,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (isControlLocked) return; // ✅ 컨트롤 잠금 시 입력 무시
+        if (isControlLocked) return;
 
         Slide();
+
         if (Input.GetKeyDown(KeyCode.S))
         {
             SoundManager.Instance.Play("Sliding");
@@ -113,13 +117,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            SetGroundTrue();
+            isGround = true;
             PlayerAnimator.SetInteger("State", 0);
             isJumping = false;
             jumpCount = 0;
@@ -130,18 +132,17 @@ public class PlayerController : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("RunTrigger"))
         {
-            if (!isRunningToEdge)  // 중복 실행 방지
+            if (!isRunningToEdge)
             {
                 StartCoroutine(RunFixedDistance());
             }
         }
         if (collider.CompareTag(targetTag))
         {
-            Invoke("ShowBoss", 2f); // 2초 뒤에 보스 등장
+            Invoke("ShowBoss", 2f);
         }
         if (collider.CompareTag("Chapter"))
         {
-            // LightOutEffect 스크립트 찾고 FlashLoop 실행
             LightOutEffect effect = FindObjectOfType<LightOutEffect>();
             if (effect != null)
             {
@@ -149,21 +150,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-
-        // Stop 트리거도 여기서 처리
         if (collider.CompareTag("Stop"))
         {
             Debug.Log("🚫 Stop Trigger Detected! Controls locked for 3 seconds.");
 
-            // 슬라이딩 강제 해제
             PlayerAnimator.SetInteger("State", 0);
-            SlcCol.enabled = false;
-            RunnCol.enabled = true;
+            boxCol.size = normalSize;
+            boxCol.offset = normalOffset;
 
             StartCoroutine(LockControlsForSeconds(3f));
         }
 
-        // 적 또는 번개 충돌 처리
         if (collider.CompareTag("Enemy"))
         {
             if (!isInvincible)
@@ -174,11 +171,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     IEnumerator RunFixedDistance()
     {
-        if (isRunningToEdge)
-            yield break; // 이미 실행 중이면 종료
+        if (isRunningToEdge) yield break;
 
         isRunningToEdge = true;
         PlayerAnimator.SetInteger("State", 0);
@@ -202,16 +197,9 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         FlipDirection();
-
         isRunningToEdge = false;
-
-        // 디버그 추가
-        Debug.Log("RunFixedDistance 완료, 현재 방향: " + currentDirection);
-
-        // 필요 시 추가 조작
         GetComponent<SpriteRenderer>().flipX = (currentDirection == Direction.Left);
     }
-
 
     void FlipDirection()
     {
@@ -231,12 +219,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     public void TakeDamage()
     {
         if (isInvincible) return;
 
-        currentLives--;   //데미지 까이는 코드 실행
+        currentLives--;
         UIManager.instance.UpdateLivesUI(currentLives);
 
         if (currentLives <= 0)
@@ -289,7 +276,7 @@ public class PlayerController : MonoBehaviour
     {
         SoundManager.Instance.Play("Dead");
         playerdie = true;
-        isControlLocked = true; // 🔧 이거 추가!
+        isControlLocked = true;
         Debug.Log("Game Over");
         PlayerAnimator.SetInteger("State", 4);
         SpeedManager.Instance.moveSpeed = 0f;
@@ -310,10 +297,9 @@ public class PlayerController : MonoBehaviour
         Die();
     }
 
-
     void TryJump()
     {
-        if (isHurt || isControlLocked) return; // ✅ 잠금 확인 추가
+        if (isHurt || isControlLocked) return;
 
         if (isGround)
         {
@@ -334,25 +320,20 @@ public class PlayerController : MonoBehaviour
 
     void Slide()
     {
-        if (isHurt || isControlLocked) return; // ✅ 잠금 확인 추가
+        if (isHurt || isControlLocked) return;
 
         if (Input.GetKey(KeyCode.S) && isGround)
         {
             PlayerAnimator.SetInteger("State", 2);
-            SlcCol.enabled = true;
-            RunnCol.enabled = false;
+            boxCol.size = slideSize;
+            boxCol.offset = slideOffset;
         }
         else if (isGround)
         {
             PlayerAnimator.SetInteger("State", 0);
-            SlcCol.enabled = false;
-            RunnCol.enabled = true;
+            boxCol.size = normalSize;
+            boxCol.offset = normalOffset;
         }
-    }
-
-    void SetGroundTrue()
-    {
-        isGround = true;
     }
 
     public void RestoreFullHP()
@@ -367,6 +348,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         isControlLocked = false;
     }
+
     void Gameover()
     {
         gameOverPanel.SetActive(true);

@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public GameObject gameOverUI;
-
     private int collectedCoins = 0;
     private int requiredCoins = 0;
     public int currentChapter = (int)ChapterType.Chapter1;
@@ -28,6 +26,19 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null) instance = this;
         else Destroy(gameObject);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            TogglePause();
+        }
+    }
+
+    void TogglePause()
+    {
+        Time.timeScale = (Time.timeScale == 0f) ? 1f : 0f;
     }
 
     public void AddCoin()
@@ -44,11 +55,29 @@ public class GameManager : MonoBehaviour
 
     public void SetRequiredCoins()
     {
-        requiredCoins = currentChapter;
+        switch ((ChapterType)currentChapter)
+        {
+            case ChapterType.Chapter1:
+                requiredCoins = 0;
+                break;
+            case ChapterType.Chapter2:
+                requiredCoins = 2;
+                break;
+            case ChapterType.Chapter3:
+                requiredCoins = 3;
+                break;
+        }
         UpdateCoinUI();
     }
 
     public bool HasEnoughCoins() { return collectedCoins >= requiredCoins; }
+
+    public void GoToChapter(int chapter)
+    {
+        currentChapter = chapter;
+        ResetCoins();
+        SetRequiredCoins();
+    }
 
     private void UpdateCoinUI()
     {
