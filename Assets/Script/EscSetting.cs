@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class SoundSet : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private AudioManager audioManager;
 
 
@@ -28,10 +29,10 @@ public class SoundSet : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            TogglePause();
-            if (isPaused)
+            if (gameOverPanel != null && gameOverPanel.activeSelf)
                 return;
-            
+
+            TogglePause();
         }
     }
     void TogglePause()

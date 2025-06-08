@@ -352,6 +352,8 @@ public class PlayerController : MonoBehaviour
     void Gameover()
     {
         gameOverPanel.SetActive(true);
+        UIManager.instance.HideCoinUI();
+        UIManager.instance.HideLivesUI();
     }
 
     void ShowBoss()

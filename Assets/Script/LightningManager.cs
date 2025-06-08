@@ -16,6 +16,13 @@ public class LightningManager : MonoBehaviour
     {
         if (instance == null) instance = this;
         else Destroy(gameObject);
+
+        if (lightning1 != null)
+            lightning1.SetActive(false);
+        if (lightning2 != null)
+            lightning2.SetActive(false);
+        if (Bosslightning != null)
+            Bosslightning.SetActive(false);
     }
 
     void ActivateBossLightning()
@@ -24,7 +31,7 @@ public class LightningManager : MonoBehaviour
             Bosslightning.SetActive(true);
     }
 
-    void ShildeLigtning()
+    void ShieldLigtning()
     {
         //코인이 충분한 경우 
         if (lightning2 != null)
@@ -36,7 +43,7 @@ public class LightningManager : MonoBehaviour
         if (hasEnoughCoins)
         {
             if (Bosslightning != null)
-                Invoke("ShildeLigtning", 0.5f);
+                Invoke("ShieldLigtning", 0.5f);
 
             if (Bosslightning != null)
                 Invoke("ActivateBossLightning", 0.8f);
