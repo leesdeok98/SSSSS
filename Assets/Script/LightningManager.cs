@@ -29,6 +29,7 @@ public class LightningManager : MonoBehaviour
     {
         if (Bosslightning != null)
             Bosslightning.SetActive(true);
+            
     }
 
     void ShieldLigtning()
@@ -36,6 +37,21 @@ public class LightningManager : MonoBehaviour
         //코인이 충분한 경우 
         if (lightning2 != null)
             lightning2.SetActive(true);//실드번개
+            SoundManager.Instance.Play("Thunder2");
+            SoundManager.Instance.Play("BH");
+
+    }
+    void PlayerDieLigtning()
+    {
+        if (lightning1 != null)
+            lightning1.SetActive(true);
+            SoundManager.Instance.Play("Thunder2");
+
+
+        if (PlayerController.instance != null)
+            PlayerController.instance.Invoke("ForceDie", 0.3f);
+            Bosss.instance.BossWin();
+            
     }
 
     public void TriggerLightning(bool hasEnoughCoins)
@@ -43,10 +59,10 @@ public class LightningManager : MonoBehaviour
         if (hasEnoughCoins)
         {
             if (Bosslightning != null)
-                Invoke("ShieldLigtning", 0.5f);
+                Invoke("ShieldLigtning", 1f);
 
             if (Bosslightning != null)
-                Invoke("ActivateBossLightning", 0.8f);
+                Invoke("ActivateBossLightning", 1.5f);
                 
             
 
@@ -54,10 +70,9 @@ public class LightningManager : MonoBehaviour
         else
         {
             if (lightning1 != null)
-                lightning1.SetActive(true);
+                Invoke("PlayerDieLigtning", 1f);
 
-            if (PlayerController.instance != null)
-                PlayerController.instance.Invoke("ForceDie", 0.3f);
         }
+        
     }
 }

@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private int maxLives = 3;
     private int currentLives;
 
-    private float invincibleTime = 20f;
+    private float invincibleTime = 1.5f;
     private float hurtDuration = 0.3f;
 
     private bool isHurt = false;
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SoundManager.Instance.Play("Jump");
+
             if (playerdie) return;
             Invoke("TryJump", 0.08f);
         }
@@ -305,16 +305,26 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
             PlayerAnimator.SetInteger("State", 1);
+            SoundManager.Instance.Play("Jump");
             isGround = false;
             isJumping = true;
             jumpCount++;
+
+            // 🔒 무조건 일반 콜라이더 적용
+            boxCol.size = normalSize;
+            boxCol.offset = normalOffset;
         }
         else if (isJumping && jumpCount < jumpLevel)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0f);
             rb.AddForce(Vector2.up * 38f, ForceMode2D.Impulse);
             PlayerAnimator.Play("Jump", 0, 0f);
+            SoundManager.Instance.Play("Jump");
             isJumping = false;
+
+            // 🔒 무조건 일반 콜라이더 적용
+            boxCol.size = normalSize;
+            boxCol.offset = normalOffset;
         }
     }
 
@@ -325,12 +335,18 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.S) && isGround)
         {
             PlayerAnimator.SetInteger("State", 2);
+            isGround = true;
+            isJumping = false;
+
+            // 🔒 슬라이딩 콜라이더 강제 적용
             boxCol.size = slideSize;
             boxCol.offset = slideOffset;
         }
         else if (isGround)
         {
             PlayerAnimator.SetInteger("State", 0);
+
+            // 🔒 일반 콜라이더 강제 적용
             boxCol.size = normalSize;
             boxCol.offset = normalOffset;
         }
@@ -361,4 +377,5 @@ public class PlayerController : MonoBehaviour
         if (Boss != null)
             Boss.SetActive(true);
     }
+
 }

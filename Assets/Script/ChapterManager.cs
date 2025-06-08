@@ -100,12 +100,13 @@ public class ChapterManager : MonoBehaviour
         StartCoroutine(AudioManager.instance.MusicFadeout());
         yield return StartCoroutine(Fade(chapterRenderer, 1f, 0f, fadeDuration));
 
-        if (currentChapterIndex == 2)  //동시 실행
+        if (currentChapterIndex == 2) //동시 실행
         {
             StartCoroutine(BossFadeOut());
         }
 
         // 다음 이미지 설정
+        AudioManager.instance.PlayBGM(nextIndex + 1);
         chapterRenderer.sprite = chapterImages[nextIndex];
 
         StartCoroutine(AudioManager.instance.MusicFadein());

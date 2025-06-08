@@ -34,6 +34,7 @@ public class Bosss : MonoBehaviour
             Boss.SetActive(true);
 
         anim.SetInteger("State", 1); // Idle
+        SoundManager.Instance.Play("BAp");
     }
 
     public void BossIdle()
@@ -47,6 +48,11 @@ public class Bosss : MonoBehaviour
         if (currentState > 8) return;
 
         StartCoroutine(BossDamageSequence());
+    }
+
+    public void BossWin()
+    {
+        anim.SetInteger("State", 9);
     }
 
     private IEnumerator BossDamageSequence()
@@ -65,7 +71,7 @@ public class Bosss : MonoBehaviour
         // currentState가 6일 경우 → 6,7,8,9까지 도달했으므로 파괴
         if (currentState == 6)
         {
-            yield return new WaitForSeconds(1f); // 마지막 애니메이션 잠깐 기다림
+            yield return new WaitForSeconds(0.5f); // 마지막 애니메이션 잠깐 기다림
             Destroy(gameObject);
         }
 

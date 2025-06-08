@@ -16,7 +16,7 @@ public class LightOutEffect : MonoBehaviour
 
     // 깜빡임 지속 시간 패턴 (초단위) – 느린 구간 2개 2.5초로 추가
     private readonly List<float> flashPattern = new List<float> {
-        0.1f, 0.05f, 1.5f, 0.05f, 0.2f, 0.07f, 1.5f
+        0.05f,0.05f,1.4f,0.025f,0.25f,0.08f,2f
     };
 
 
