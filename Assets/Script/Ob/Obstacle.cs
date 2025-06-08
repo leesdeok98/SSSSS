@@ -22,7 +22,6 @@ public class Obstacle : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("플레이어와 충돌!");
             PlayerController.instance.TakeDamage();
         }
     }

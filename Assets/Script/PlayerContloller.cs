@@ -57,6 +57,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rigid;
 
+    public float destroyX = 11f;
+    public System.Action OnReachedDestroyX;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -376,6 +379,30 @@ public class PlayerController : MonoBehaviour
     {
         if (Boss != null)
             Boss.SetActive(true);
+    }
+
+    public void StartAutoRun()
+    {
+        isControlLocked = true; // 입력 막기
+        StartCoroutine(AutoRunRoutine());
+    }
+
+    private IEnumerator AutoRunRoutine()
+    {
+        PlayerAnimator.SetInteger("State", 0);
+        float speed = 5f;
+        rb.gravityScale = 0f;
+
+        while (transform.position.x < destroyX)
+        {
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            yield return null;
+        }
+
+        rb.velocity = Vector2.zero;
+
+        OnReachedDestroyX?.Invoke();
+        Destroy(gameObject);
     }
 
 }
