@@ -22,6 +22,7 @@ public class DreamEnergy : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.instance.AddCoin();
+            SoundManager.Instance.Play("DE"); // SFX 재생 
             // AudioManager.instance.PlaySFX(AudioManager.SFX.DE); //  SFX 재생
             Destroy(gameObject);
         }

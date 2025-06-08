@@ -35655,23 +35655,23 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: BA
     clip: {fileID: 8300000, guid: f272b3808c33d2a40be30115e1305b55, type: 3}
-    volume: 0.5
+    volume: 0.2
     source: {fileID: 0}
   - name: BAp
     clip: {fileID: 8300000, guid: e7cdd30292b35a44cb3e2a9a5f4741bd, type: 3}
-    volume: 0.5
+    volume: 0.2
     source: {fileID: 0}
   - name: BD
     clip: {fileID: 8300000, guid: ee1996b9f03193c4bbb3722c2e1dff9c, type: 3}
-    volume: 0.5
+    volume: 0.2
     source: {fileID: 0}
   - name: BL
     clip: {fileID: 8300000, guid: 0ae543d33d252f74b996df7f49e05e42, type: 3}
-    volume: 0.5
+    volume: 0.2
     source: {fileID: 0}
   - name: DE
     clip: {fileID: 8300000, guid: 3be1c5acd2bab1947987b940a12527e7, type: 3}
-    volume: 0.5
+    volume: 0.3
     source: {fileID: 0}
   - name: Dead
     clip: {fileID: 8300000, guid: 2c1f12cfe69423f429bfa9a16e4692ba, type: 3}
@@ -35699,11 +35699,11 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Thunder1
     clip: {fileID: 8300000, guid: 029087e856bd5144b81fa6c9da74aee8, type: 3}
-    volume: 0.5
+    volume: 0.3
     source: {fileID: 0}
   - name: Thunder2
     clip: {fileID: 8300000, guid: 551c4d53e5581104e8f7fa73f059fa78, type: 3}
-    volume: 0.5
+    volume: 0.3
     source: {fileID: 0}
   - name: Typing
     clip: {fileID: 8300000, guid: dddda9dcc1879324488bc3f0e0c3f477, type: 3}
