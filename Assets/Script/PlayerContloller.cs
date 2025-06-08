@@ -404,5 +404,9 @@ public class PlayerController : MonoBehaviour
         OnReachedDestroyX?.Invoke();
         Destroy(gameObject);
     }
+    public bool IsDead()
+    {
+        return playerdie;
+    }
 
 }

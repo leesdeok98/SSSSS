@@ -5,7 +5,7 @@ using UnityEngine;
 public class ClearFadeEffect : MonoBehaviour
 {
     public CanvasGroup canvasGroup;
-    public float fadeDuration = 3f;
+    public float fadeDuration = 1f;     // 이부분이 페이드 시간
 
     private void Awake()
     {

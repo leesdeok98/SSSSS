@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 
 public class Bosss : MonoBehaviour
@@ -8,7 +8,7 @@ public class Bosss : MonoBehaviour
     public GameObject Boss;
     public Animator anim;
 
-    private int currentState = 2; // »óÅÂ ½ÃÀÛ°ª
+    private int currentState = 2; // ìƒíƒœ ì‹œì‘ê°’
 
     void Awake()
     {
@@ -44,7 +44,6 @@ public class Bosss : MonoBehaviour
 
     public void BossTakeDamege()
     {
-        // »óÅÂ°¡ 9 ÀÌ»óÀÌ¸é ÀÌ¹Ì ´Ù ³¡³­ »óÅÂÀÌ¹Ç·Î ´õ ÀÌ»ó ½ÇÇà ¾È ÇÔ
         if (currentState > 8) return;
 
         StartCoroutine(BossDamageSequence());
@@ -58,23 +57,46 @@ public class Bosss : MonoBehaviour
     private IEnumerator BossDamageSequence()
     {
         anim.SetInteger("State", currentState);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.6f);
 
         anim.SetInteger("State", currentState + 1);
         yield return new WaitForSeconds(2.5f);
 
         anim.SetInteger("State", currentState + 2);
-        yield return new WaitForSeconds(2.8f);
+        yield return new WaitForSeconds(2.2f);
 
         anim.SetInteger("State", currentState + 3);
 
-        // currentState°¡ 6ÀÏ °æ¿ì ¡æ 6,7,8,9±îÁö µµ´ŞÇßÀ¸¹Ç·Î ÆÄ±«
         if (currentState == 6)
         {
-            yield return new WaitForSeconds(0.5f); // ¸¶Áö¸· ¾Ö´Ï¸ŞÀÌ¼Ç Àá±ñ ±â´Ù¸²
+            yield return new WaitForSeconds(0.5f); // ë§ˆì§€ë§‰ ì• ë‹ˆë©”ì´ì…˜ ì ê¹ ê¸°ë‹¤ë¦¼
             Destroy(gameObject);
         }
 
-        currentState += 4; // ´ÙÀ½ Damage ´Ü°è·Î ³Ñ¾î°¨
+        currentState += 4;
+    }
+
+    private void Update()
+    {
+        if (PlayerController.instance != null && PlayerController.instance.IsDead())
+        {
+            StartCoroutine(StopBossAnimationAfterDelay());
+        }
+    }
+
+    private bool isStopped = false;
+
+    private IEnumerator StopBossAnimationAfterDelay()
+    {
+        if (isStopped) yield break; // ì¤‘ë³µ í˜¸ì¶œ ë°©ì§€
+
+        isStopped = true;
+        yield return new WaitForSeconds(0.2f);
+
+        if (anim != null)
+        {
+            anim.enabled = false;
+            Debug.Log("ğŸ›‘ Boss ì• ë‹ˆë©”ì´í„° ì™„ì „íˆ ì¤‘ë‹¨ë¨");
+        }
     }
 }

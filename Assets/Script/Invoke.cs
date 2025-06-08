@@ -26,6 +26,12 @@ public class Invoke : MonoBehaviour
 
     void OnBecameInvisible()
     {
+        // 10초 뒤에 Destroy 실행
+        Invoke("DestroySelf", 0.5f);
+    }
+
+    void DestroySelf()
+    {
         Destroy(gameObject);
     }
 }

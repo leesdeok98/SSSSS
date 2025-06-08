@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +7,7 @@ public enum ChapterType
     Chapter1 = 1,
     Chapter2 = 2,
     Chapter3 = 3,
+    Chapter4 = 4,
 }
 
 public class GameManager : MonoBehaviour
@@ -52,6 +52,9 @@ public class GameManager : MonoBehaviour
                 break;
             case ChapterType.Chapter3:
                 requiredCoins = 3;
+                break;
+            case ChapterType.Chapter4:
+                requiredCoins = 0;
                 break;
         }
         UpdateCoinUI();

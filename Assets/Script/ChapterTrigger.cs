@@ -1,21 +1,4 @@
-/* using UnityEngine;
-
-public class ChapterTrigger : MonoBehaviour
-{
-    [Header("이 오브젝트와 충돌 시 챕터 전환 설정")]
-    [SerializeField] private int fromChapterIndex = 0;
-    [SerializeField] private int toChapterIndex = 1;
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Debug.LogWarning("충돌 됨");
-            ChapterManager.Instance.StartChapterTransition(fromChapterIndex, toChapterIndex);
-        }
-    }
-} */
-
+using System.Collections;
 using UnityEngine;
 
 public class ChapterTrigger : MonoBehaviour
@@ -33,19 +16,32 @@ public class ChapterTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             ChapterManager manager = FindObjectOfType<ChapterManager>();
-            if (manager != null && isChangeTime == false)
+
+            if (manager != null && !isChangeTime)
             {
+                if (nextChapter == 4)
+                {
+                    UIManager.instance?.HideLivesUI();
+                    StartCoroutine(DelayedGoToNextChapter());
+                    return;
+                }
+
                 isChangeTime = true;
-                Debug.Log("충돌 감지. 챕터 변경");
                 manager.TryChangeChapter();
+                StartCoroutine(DelayedGoToNextChapter());
                 Invoke("ChangeBool", 10.0f);
-                GameManager.instance.GoToChapter(nextChapter);
                 PlayerController.instance.RestoreFullHP();
             }
         }
     }
 
-    public void ChangeBool()
+    private IEnumerator DelayedGoToNextChapter()
+    {
+        yield return new WaitForSeconds(0.7f); // 1초 대기 (지연 시간)
+        GameManager.instance.GoToChapter(nextChapter);
+    }
+
+    private void ChangeBool()
     {
         isChangeTime = false;
     }

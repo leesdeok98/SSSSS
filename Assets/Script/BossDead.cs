@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class BossDie : MonoBehaviour
+public class BossDead : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("BossDead", 1f);
+        
     }
 
     // Update is called once per frame
@@ -18,12 +17,12 @@ public class BossDie : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            BossDead();
+            Invoke("Bosss", 0.5f);
         }
     }
-    void BossDead()
+    void Bosss()
     {
         SoundManager.Instance.Play("BD");
     }
