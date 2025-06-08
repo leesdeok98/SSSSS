@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class ChapterTrigger : MonoBehaviour
@@ -22,26 +21,22 @@ public class ChapterTrigger : MonoBehaviour
                 if (nextChapter == 4)
                 {
                     UIManager.instance?.HideLivesUI();
-                    StartCoroutine(DelayedGoToNextChapter());
+                    GameManager.instance.GoToChapter(nextChapter);
+                    StartCoroutine(AudioManager.instance.MusicFadeout());
+                    AudioManager.instance.StopBGM();
                     return;
                 }
 
                 isChangeTime = true;
                 manager.TryChangeChapter();
-                StartCoroutine(DelayedGoToNextChapter());
                 Invoke("ChangeBool", 10.0f);
+                GameManager.instance.GoToChapter(nextChapter);
                 PlayerController.instance.RestoreFullHP();
             }
         }
     }
 
-    private IEnumerator DelayedGoToNextChapter()
-    {
-        yield return new WaitForSeconds(0.7f); // 1초 대기 (지연 시간)
-        GameManager.instance.GoToChapter(nextChapter);
-    }
-
-    private void ChangeBool()
+    public void ChangeBool()
     {
         isChangeTime = false;
     }

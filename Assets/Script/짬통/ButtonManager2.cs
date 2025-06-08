@@ -80,6 +80,7 @@ public class ButtonManager2 : MonoBehaviour
     void OnBackButtonClicked()
     {
         SoundManager.Instance.Play("PB");
+        AudioManager.instance.UnPauseBGM();
         pausePanel.SetActive(false);
     }
 
