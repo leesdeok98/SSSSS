@@ -11,8 +11,6 @@ public class LightningTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log($"번개 충돌: {other.gameObject.name}");
-
             if (GameManager.instance == null || LightningManager.instance == null)
             {
                 Debug.LogWarning("GameManager or LightningManager missing");

@@ -852,6 +852,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 838156677}
     m_Modifications:
     - target: {fileID: -6752367400909512348, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
+      propertyPath: m_Size.x
+      value: 8.671566
+      objectReference: {fileID: 0}
+    - target: {fileID: -6752367400909512348, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
+      propertyPath: m_Size.y
+      value: 20.255
+      objectReference: {fileID: 0}
+    - target: {fileID: -6752367400909512348, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
+      propertyPath: m_Offset.y
+      value: 10.1275
+      objectReference: {fileID: 0}
+    - target: {fileID: -6752367400909512348, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 18.3
       objectReference: {fileID: 0}
@@ -861,19 +873,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 912981792926934678, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.11688001
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 912981792926934678, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.11688001
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 912981792926934678, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 125.08
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 912981792926934678, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.5
+      value: -3.330897
       objectReference: {fileID: 0}
     - target: {fileID: 912981792926934678, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1492,6 +1504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 1757253256}
+  gameOverPanel: {fileID: 558893991}
   audioManager: {fileID: 1577850231}
 --- !u!114 &72932253
 MonoBehaviour:
@@ -6096,7 +6109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72e0a4b9a6adb2c48a8c3d7db3f25abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextChapter: 2
 --- !u!114 &365329533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39685,7 +39697,7 @@ SpriteRenderer:
   m_Size: {x: 12.54, y: 7.09}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2112847035
@@ -39876,6 +39888,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 838156677}
     m_Modifications:
     - target: {fileID: -6752367400909512348, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
+      propertyPath: m_Size.x
+      value: 8.671566
+      objectReference: {fileID: 0}
+    - target: {fileID: -6752367400909512348, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
+      propertyPath: m_Size.y
+      value: 20.255
+      objectReference: {fileID: 0}
+    - target: {fileID: -6752367400909512348, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
+      propertyPath: m_Offset.y
+      value: 10.1275
+      objectReference: {fileID: 0}
+    - target: {fileID: -6752367400909512348, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 15.4
       objectReference: {fileID: 0}
@@ -39885,11 +39909,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 912981792926934678, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.11688001
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 912981792926934678, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.11688001
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 912981792926934678, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -39897,7 +39921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 912981792926934678, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.5
+      value: -3.330897
       objectReference: {fileID: 0}
     - target: {fileID: 912981792926934678, guid: 25ce5a20e48c7cc469d45996994badef, type: 3}
       propertyPath: m_LocalPosition.z

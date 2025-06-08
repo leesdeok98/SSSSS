@@ -28,19 +28,6 @@ public class GameManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            TogglePause();
-        }
-    }
-
-    void TogglePause()
-    {
-        Time.timeScale = (Time.timeScale == 0f) ? 1f : 0f;
-    }
-
     public void AddCoin()
     {
         collectedCoins++;

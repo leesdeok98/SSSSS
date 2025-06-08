@@ -32,8 +32,6 @@ public class ChapterTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log($"√©≈Õ √Êµπ: {other.gameObject.name}");
-
             ChapterManager manager = FindObjectOfType<ChapterManager>();
             if (manager != null && isChangeTime == false)
             {
