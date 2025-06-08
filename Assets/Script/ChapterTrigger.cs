@@ -38,7 +38,7 @@ public class ChapterTrigger : MonoBehaviour
             if (manager != null && isChangeTime == false)
             {
                 isChangeTime = true;
-                Debug.Log("sdkfjls");
+                Debug.Log("충돌 감지. 챕터 변경");
                 manager.TryChangeChapter();
                 Invoke("ChangeBool", 10.0f);
                 GameManager.instance.GoToChapter(nextChapter);
