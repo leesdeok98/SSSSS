@@ -25,7 +25,7 @@ public class storyManager : MonoBehaviour
     {
         WaitForImage,
         WaitForText,
-        TypingText,
+        //TypingText,
         TextComplete,
         StoryEnd
     }
@@ -46,6 +46,8 @@ public class storyManager : MonoBehaviour
         AudioManager.instance.UnPauseBGM(); // 메인 타이틀 음악 재생
     }
 
+    private bool isTyping = false;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -53,13 +55,16 @@ public class storyManager : MonoBehaviour
             switch (currentStep)
             {
                 case StoryStep.WaitForText:
-                    StartTyping();
-                    SoundManager.Instance.Play("Typing");
+                    if (!isTyping) // 이미 타이핑 중이면 무시
+                    {
+                        StartTyping();
+                        SoundManager.Instance.Play("Typing");
+                    }
                     break;
 
-                case StoryStep.TypingText:
+                /*case StoryStep.TypingText:
                     CompleteTyping();
-                    break;
+                    break; */
 
                 case StoryStep.TextComplete:
                     StartCoroutine(FadeOutToNextImage());
@@ -89,11 +94,16 @@ public class storyManager : MonoBehaviour
         currentStep = StoryStep.WaitForText;
     }
 
-    private void StartTyping()
-    {
+     void StartTyping()
+     {
+        if (typingCorutine != null)
+            StopCoroutine(typingCorutine); // 혹시 이전 코루틴이 남아 있다면 정지
+
+        isTyping = true;
+        
         typingCorutine = StartCoroutine(TypeText(images[currentImage].storyText));
-        currentStep = StoryStep.TypingText;
-    }
+        //currentStep = StoryStep.TypeText;
+     }
 
     private IEnumerator TypeText(string storyText)
     {
@@ -103,17 +113,18 @@ public class storyManager : MonoBehaviour
             yield return new WaitForSeconds(typingSpeed);
         }
 
+        isTyping = false; // 타이핑 완료됨
         currentStep = StoryStep.TextComplete;
     }
 
-    private void CompleteTyping()
+    /* private void CompleteTyping()
     {
         if (typingCorutine != null)
             StopCoroutine(typingCorutine);
 
         text.text = images[currentImage].storyText;
         currentStep = StoryStep.TextComplete;
-    }
+    } */
 
     private IEnumerator FadeOutToNextImage()
     {
