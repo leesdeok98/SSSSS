@@ -14,6 +14,11 @@ public class ChapterTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (PlayerController.instance != null && PlayerController.instance.isDying)
+            {
+                return;
+            }
+
             ChapterManager manager = FindObjectOfType<ChapterManager>();
 
             if (manager != null && !isChangeTime)

@@ -1523,6 +1523,7 @@ MonoBehaviour:
   rb: {fileID: 72932247}
   PlayerAnimator: {fileID: 72932250}
   boxCol: {fileID: 0}
+  isDying: 0
   jumpLevel: 2
   Boss: {fileID: 0}
   targetTag: Chapter
@@ -12344,7 +12345,7 @@ Transform:
   m_GameObject: {fileID: 619969796}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 169.62, y: -14.1, z: 0}
+  m_LocalPosition: {x: 171.92, y: -14.1, z: 0}
   m_LocalScale: {x: 50, y: 52.365887, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21552,7 +21553,7 @@ Transform:
   m_GameObject: {fileID: 1051760570}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 716.01996, y: -14.1, z: 0}
+  m_LocalPosition: {x: 718.32, y: -14.1, z: 0}
   m_LocalScale: {x: 50, y: 52.36589, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

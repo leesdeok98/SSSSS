@@ -160,7 +160,6 @@ public class PlayerMove : MonoBehaviour
         lives -= 1;
         ChangeAnim(State.Hit);
         StartInvincible();
-        Debug.Log("Crush");
 
 
         if (lives <= 0)
@@ -171,7 +170,7 @@ public class PlayerMove : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Game over");
+
     }
 
     void StartInvincible()

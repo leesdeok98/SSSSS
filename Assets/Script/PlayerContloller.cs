@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private bool isHurt = false;
     private bool isInvincible = false;
     private bool playerdie = false;
+    public bool isDying = false;
 
     private bool isSliding = false;
     private bool isGround = false;
@@ -280,7 +281,6 @@ public class PlayerController : MonoBehaviour
         SoundManager.Instance.Play("Dead");
         playerdie = true;
         isControlLocked = true;
-        Debug.Log("Game Over");
         PlayerAnimator.SetInteger("State", 4);
         SpeedManager.Instance.moveSpeed = 0f;
         BackgroundScrolling.Instance.speed = 0f;
@@ -407,6 +407,16 @@ public class PlayerController : MonoBehaviour
     public bool IsDead()
     {
         return playerdie;
+    }
+
+    public bool IsDying()
+    {
+        return isDying;
+    }
+
+    public void SetDyingTrue()
+    {
+        isDying = true;
     }
 
 }

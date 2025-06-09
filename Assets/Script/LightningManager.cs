@@ -49,6 +49,7 @@ public class LightningManager : MonoBehaviour
 
 
         if (PlayerController.instance != null)
+            PlayerController.instance.SetDyingTrue();
             PlayerController.instance.Invoke("ForceDie", 0.3f);
             Bosss.instance.BossWin();
             

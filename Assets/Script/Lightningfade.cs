@@ -25,7 +25,7 @@ public class Lightningfade : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        float duration = 0.1f;
+        float duration = 0.5f;
         float elapsed = 0f;
 
         while (elapsed < duration)

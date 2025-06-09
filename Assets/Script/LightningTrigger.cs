@@ -13,7 +13,6 @@ public class LightningTrigger : MonoBehaviour
         {
             if (GameManager.instance == null || LightningManager.instance == null)
             {
-                Debug.LogWarning("GameManager or LightningManager missing");
                 return;
             }
             if (Bosss.instance != null)
