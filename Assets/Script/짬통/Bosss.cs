@@ -57,13 +57,13 @@ public class Bosss : MonoBehaviour
     private IEnumerator BossDamageSequence()
     {
         anim.SetInteger("State", currentState);
-        yield return new WaitForSeconds(1.6f);
+        yield return new WaitForSeconds(1.4f);
 
         anim.SetInteger("State", currentState + 1);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.8f);
 
         anim.SetInteger("State", currentState + 2);
-        yield return new WaitForSeconds(2.2f);
+        yield return new WaitForSeconds(2.5f);
 
         anim.SetInteger("State", currentState + 3);
 
