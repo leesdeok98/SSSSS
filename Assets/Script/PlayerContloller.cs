@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
         {
 
             if (playerdie) return;
-            Invoke("TryJump", 0.08f);
+            Invoke("TryJump", 0.05f);
         }
     }
 
